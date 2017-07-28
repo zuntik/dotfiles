@@ -1,0 +1,4 @@
+set noloadplugins
+set mouse=a
+
+" vim:filetype=vim
