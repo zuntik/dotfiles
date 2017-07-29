@@ -104,20 +104,6 @@ tsm-info() { transmission-remote -t"$1" --info ;}
 tsm-speed() { while true;do clear; transmission-remote -t"$1" -i | grep Speed;sleep 1;done ;}
 # }}}
 
-# nt - new terminal
-# usage: nt
-# {{{
-function nt()
-{
-    case "$TERM" in
-        rxvt*)
-            urxvt & ;;
-        *)
-            ;;
-    esac
-}
-# }}}
-
 # use vimpager when available for manpages
 [ -f /usr/bin/vimpager ] && export MANPAGER=vimpager
 
