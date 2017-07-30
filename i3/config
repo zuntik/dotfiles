@@ -38,7 +38,7 @@ floating_modifier $mod
 focus_follows_mouse yes
 
 # start a terminal
-bindsym $mod+Return exec [ -f /usr/bin/xcwd ] && (xterm -e "cd '`xcwd`' && /bin/zsh") || xterm ;
+bindsym $mod+Return exec --no-startup-id [ -f /usr/bin/xcwd ] && (xterm -e "cd '`xcwd`' && /bin/zsh") || xterm ;
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -197,17 +197,18 @@ for_window [title="galculator"] floating enable border
 for_window [class="SpeedCrunch"] floating enable border
 for_window [class="SpeedCrunch"] move position center
 for_window [title="musescore: play panel"] floating enable
-for_window [class="nitrogen"] floating enable sticky enable border pixel $bordersize2
+for_window [class="nitrogen"] floating enable sticky enable
 for_window [class="oblogout"] fullscreen enable
-for_window [class="qtconfig-qt4"] floating enable border pixel $bordersize2
-for_window [class="qt5ct"] floating enable sticky enable border pixel $bordersize2
-for_window [class="simple-scan"] floating enable border pixel $bordersize2
-for_window [class="(?i)system-config-printer.py"] floating enable border pixel $bordersize2
-for_window [class="skype"] floating enable border pixel $bordersize2
-for_window [class="(?i)virtualbox"] floating enable border pixel $bordersize2
-for_window [class="xfburn"] floating enable
+for_window [class="qtconfig-qt4"] floating enable border pixel
+for_window [class="qt5ct"] floating enable sticky enable border pixel
+for_window [class="simple-scan"] floating enable border pixel
+for_window [class="(?i)system-config-printer.py"] floating enable
+for_window [class="skype"] floating enable
+for_window [class="(?i)virtualbox"] floating enable
 for_window [class="Gelemental"] floating enable
-for_window [class="gnome-dictionary"] floating enable berder normal
+for_window [class="Gnome-dictionary"] floating enable
+for_window [class="Gnome-dictionary"] resize set 640 480
+for_window [class="Gnome-dictionary"] move position center
 for_window [class="Gnote"] floating enable border
 for_window [class="Gnote"] resize set 640 480
 for_window [title="Open File"] resize set 640 480
