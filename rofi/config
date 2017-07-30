@@ -1,5 +1,5 @@
 ! "Enabled modi"
-rofi.modi:                           drun,run,window,ssh
+rofi.modi:                           drun,run,window
 ! "Window width"
 rofi.width:                          50
 ! "Number of lines"
@@ -9,17 +9,13 @@ rofi.columns:                        1
 ! "Font to use"
 rofi.font:                           mono 12
 ! "Color scheme for normal row"
-! rofi.color-normal:                   argb:0383c4a, #c4cbd4, argb:96404552, #4084d6, #f9f9f9
-rofi.color-normal:                   argb:0fdf6e3, #b2c1bc, argb:04b6871, #0a111d, #b2c1bc
+rofi.color-normal:                   argb:0383c4a, #c4cbd4, argb:0383c4a, #4084d6, #f9f9f9
 ! "Color scheme for urgent row"
-!rofi.color-urgent:                   argb:02d303b, #cc6666, argb:e52d303b, #a54242, #f9f9f9
-rofi.color-urgent:                   #fdf6e3, #dc322f, #eee8d5, #dc322f, #fdf6e3
+rofi.color-urgent:                   argb:02d303b, #cc6666, argb:e52d303b, #a54242, #f9f9f9
 ! "Color scheme for active row"
-!rofi.color-active:                   argb:02d303b, #b5bd68, argb:e42d303b, #8c9440, #f9f9f9
-rofi.color-active:                   #fdf6e3, #268bd2, #eee8d5, #268bd2, #fdf6e3
+rofi.color-active:                   argb:02d303b, #b5bd68, argb:e42d303b, #8c9440, #f9f9f9
 ! "Color scheme window"
-!rofi.color-window:                   argb:f22d303b, #7c8389, #1d1f21
-rofi.color-window:                   argb:d817273d, argb:0ffffff, #0a111d
+rofi.color-window:                   argb:f22d303b, #7c8389, #1d1f21
 ! "Border width"
 rofi.bw:                             0
 ! "Location on screen"
