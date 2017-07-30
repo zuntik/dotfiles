@@ -52,6 +52,11 @@ if has("gui_running")
     colorscheme slate
 end
 
+" remove the .ext~ files, but not the swapfiles
+silent ! [ \! -d ~/.vim/backup ] && mkdir -p ~/.vim/backup
+silent ! [ \! -d ~/.vim/swp ] && mkdir -p ~/.vim/swp
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swp//
 
 " Always show tabline
 " set showtabline=2
