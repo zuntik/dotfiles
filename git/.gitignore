@@ -28,5 +28,9 @@ build/
 *.swp
 *.un~
 *~
-*.swp
 *.swo
+
+# latex
+*.aux
+*.log
+*.pdf
