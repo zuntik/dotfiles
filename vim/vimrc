@@ -53,8 +53,12 @@ if has("gui_running")
 end
 
 " remove the .ext~ files, but not the swapfiles
-silent ! [ \! -d ~/.vim/backup ] && mkdir -p ~/.vim/backup
-silent ! [ \! -d ~/.vim/swp ] && mkdir -p ~/.vim/swp
+if !isdirectory($HOME."/.vim/backup")
+    call mkdir($HOME."/.vim/backup", "p")
+endif
+if !isdirectory($HOME."/.vim/swp")
+    call mkdir($HOME."/.vim/swp", "p")
+endif
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swp//
 
@@ -126,6 +130,9 @@ Plug 'nathanaelkane/vim-indent-guides'
 " http://vimawesome.com/plugin/vim-colorschemes-sweeter-than-fiction
 Plug 'flazz/vim-colorschemes'
 
+" https://github.com/xolox/vim-notes
+Plug 'xolox/vim-notes'
+Plug 'xolox/vim-misc'
 
 
 " Initialize plugin system
