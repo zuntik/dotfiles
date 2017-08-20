@@ -209,8 +209,9 @@ for_window [class="Gelemental"] floating enable
 for_window [class="Gnome-dictionary"] floating enable
 for_window [class="Gnome-dictionary"] resize set 640 480
 for_window [class="Gnome-dictionary"] move position center
-for_window [class="Gnote"] floating enable
-for_window [class="Gnote"] resize set 640 480
+for_window [class="Zim"] floating enable
+for_window [class="Zim"] resize set 640 480
+for_window [class="Zim"] move position center
 for_window [title="Open File"] resize set 640 480
 for_window [title="Open File"] move position center
 
@@ -264,11 +265,11 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 #Touchpad
-exec --no-startup-id synclient TapButton1=1
-exec --no-startup-id synclient TapButton2=3
-exec --no-startup-id synclient VertTwoFingerScroll=1
-exec --no-startup-id synclient HorizTwoFingerScroll=1
-exec --no-startup-id synclient ClickFinger2=3
+exec_always --no-startup-id synclient TapButton1=1
+exec_always --no-startup-id synclient TapButton2=3
+exec_always --no-startup-id synclient VertTwoFingerScroll=1
+exec_always --no-startup-id synclient HorizTwoFingerScroll=1
+exec_always --no-startup-id synclient ClickFinger2=3
 
 #Autostart stuff
 exec --no-startup-id feh --no-fehbg --bg-center ~/Pictures/wallpaper.jpg
@@ -280,12 +281,11 @@ exec --no-startup-id dunst
 bindsym $mod+Shift+f exec firefox
 bindsym $mod+Shift+Return exec [ -f /usr/bin/xcwd ] && thunar "`xcwd`" || thunar;
 bindsym XF86Calculator exec speedcrunch
-#bindsym $mod+Shift+n exec --no-startup-id nm-applet
 bindsym $mod+Shift+d exec dropbox
 bindsym Print exec xfce4-screenshooter -r -s ~/Pictures/ScreenShots
 bindsym XF86ScreenSaver exec --no-startup-id ~/.config/i3/lock-script.sh
-bindsym XF86TouchpadToggle exec ~/.config/i3/toggletouchpad.sh
-bindsym $mod+Shift+n exec gnote
+bindsym XF86TouchpadToggle exec --no-startup-id ~/.config/i3/toggletouchpad.sh
+bindsym $mod+Shift+n exec zim
 
 
 
@@ -311,9 +311,6 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-
-
-
 
 # Set inner/outer gaps
 gaps inner 10
@@ -367,5 +364,4 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-
 
