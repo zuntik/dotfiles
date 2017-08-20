@@ -43,7 +43,7 @@ rofi.run-shell-command:              {terminal} -e {cmd}
 ! "Command executed on accep-entry-custom for window modus"
 rofi.window-command:                 xkill -id {window}
 ! "Disable history in run/ssh"
-rofi.disable-history:                false
+rofi.disable-history:                true
 ! "Use levenshtein sorting"
 rofi.levenshtein-sort:               false
 ! "Set case-sensitivity"
@@ -61,7 +61,7 @@ rofi.parse-hosts:                    false
 ! "Parse known_hosts file for ssh mode"
 rofi.parse-known-hosts:              true
 ! "Set the modi to combine in combi mode"
-rofi.combi-modi:                     window,run
+rofi.combi-modi:                     drun,run
 ! "Set the matching algorithm. (normal, regex, glob, fuzzy)"
 rofi.matching:                       normal
 ! "Tokenize input string"
