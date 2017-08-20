@@ -13,7 +13,9 @@ alias cleanpackages='sudo pacman -Rns $(pacman -Qtdq)'
 alias pwd_end_bit="pwd | sed 's#.*/##'"
 alias pwd_from_within='echo $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )'
 alias fcrm='\rm -rf'
-
+# alias webpd='wget -k -p -r' 
+alias webpd='wget -np -N -E -k -p -r -l5'
+alias xo='xdg-open'
 
 # Specific stuff to a computer goes here
 #{{{
@@ -24,7 +26,7 @@ function spec ()
     local STRING=$(echo $NAME | sha1sum);
     local HASH=$(echo $STRING | head -n1 | awk '{print $1;}');
     case $HASH in
-	2e11ce400c7286cd8a45a235dfeb28678a3e944f)
+        2e11ce400c7286cd8a45a235dfeb28678a3e944f)
             alias go='gio open' 
             alias rm='gio trash'
     esac
