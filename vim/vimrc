@@ -134,6 +134,8 @@ Plug 'flazz/vim-colorschemes'
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-misc'
 
+" https://vimawesome.com/plugin/colorizer-sparks-fly
+Plug 'lilydjwg/colorizer'
 
 " Initialize plugin system
 call plug#end()
