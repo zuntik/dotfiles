@@ -214,18 +214,28 @@ for_window [class="Zim"] resize set 640 480
 for_window [class="Zim"] move position center
 for_window [title="Open File"] resize set 640 480
 for_window [title="Open File"] move position center
+for_window [title="pinentry"] floating enable
+for_window [title="pinentry"] move position center
+for_window [title="Opening"] move position center
+
 
 # open specific applications on specific workspaces
 # example
 # assign[class="Firefox"] $workspace2
 
+set_from_resource $txtcol1 i3wm.colortext1
+set_from_resource $txtcol2 i3wm.colortext2
+set_from_resource $colurgt i3wm.colorurgent
+set_from_resource $colback i3wm.colorbackground
+# client.focused          #2B83A6 #2B83A6 $txtcol1 #285577 #285577
+
 # Colours
-# class                 border  backgr. text    indicator child_border
-client.focused          #2B83A6 #2B83A6 #ffffff #285577   #285577
-client.focused_inactive #5f676a #5f676a #ffffff #5f676a   #5f676a
-client.unfocused        #222222 #222222 #888888 #222222   #222222
-client.urgent           #2f343a #900000 #ffffff #900000   #900000
-client.placeholder      #000000 #0c0c0c #ffffff #0c0c0c   #0c0c0c
+# class                 border      backgr.     text        indicator   child_border
+client.focused          #2B83A6     #2B83A6     $txtcol1    #2B83A6     #2B83A6 
+client.focused_inactive #5f676a     #5f676a     $txtcol1    #5f676a     #5f676a
+client.unfocused        $colback    $colback    $txtcol2    $colback    $colback
+client.urgent           $colurgt    $colurgt    $txtcol1    $colurgt    $colurgt
+client.placeholder      #000000     #0c0c0c     $txtcol1    #0c0c0c     #0c0c0c
 client.background       #ffffff
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -241,14 +251,14 @@ bar {
     workspace_buttons       yes
 
     colors {
-            background  #212121
+            background  $colback
             statusline  #DDDDDD
             separator   #666666
             # class             border  backgr. text
-            focused_workspace   #2B83A6 #2B83A6 #FFFFFF
-            active_workspace    #212121 #212121 #FFFFFF
-            inactive_workspace  #212121 #212121 #86888C
-            urgent_workspace    #2F343A #D64E4E #FFFFFF
+            focused_workspace   #2B83A6 #2B83A6 $txtcol1
+            active_workspace    $colback $colback $txtcol1
+            inactive_workspace  $colback $colback $txtcol2
+            urgent_workspace    $colurgt $colurgt $txtcol1
     }
 
 }
@@ -273,7 +283,6 @@ exec_always --no-startup-id synclient ClickFinger2=3
 
 #Autostart stuff
 exec --no-startup-id feh --no-fehbg --bg-center ~/Pictures/wallpaper.jpg
-exec --no-startup-id xrdb ~/.Xresources
 exec --no-startup-id compton
 exec --no-startup-id dunst
 
