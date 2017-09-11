@@ -4,6 +4,9 @@ SAVEHIST=1000
 setopt nomatch
 unsetopt appendhistory autocd beep extendedglob notify
 
+# Completion
+# {{{
+
 # allow one error for every three characters typed in approximate completer
 zstyle ':completion:*:approximate:'    max-errors 'reply=( $((($#PREFIX+$#SUFFIX)/3 )) numeric )'
 
@@ -100,6 +103,8 @@ setopt correct
 # command for process lists, the local web server details and host completion
 zstyle ':completion:*:urls' local 'www' '/var/www/' 'public_html'
 
+# }}}
+
 autoload -Uz compinit
 compinit
 
@@ -145,3 +150,4 @@ path+=($HOME'/bin')
 [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && \
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# vim:foldmethod=marker:foldlevel=0
