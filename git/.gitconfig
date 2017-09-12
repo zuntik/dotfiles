@@ -42,6 +42,7 @@
 	copystage = checkout-index -f
 	branchcommit = checkout -b
 	lsalias = config --get-regexp alias
+	detailremote = remote show
 [diff]
 	tool = vimdiff
 [merge]
