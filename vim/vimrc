@@ -130,10 +130,6 @@ Plug 'nathanaelkane/vim-indent-guides'
 " http://vimawesome.com/plugin/vim-colorschemes-sweeter-than-fiction
 Plug 'flazz/vim-colorschemes'
 
-" https://github.com/xolox/vim-notes
-Plug 'xolox/vim-notes'
-Plug 'xolox/vim-misc'
-
 " https://vimawesome.com/plugin/colorizer-sparks-fly
 Plug 'lilydjwg/colorizer'
 
