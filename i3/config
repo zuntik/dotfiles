@@ -293,6 +293,7 @@ bindsym XF86Calculator exec speedcrunch
 bindsym $mod+Shift+d exec dropbox
 bindsym Print exec xfce4-screenshooter -r -s ~/Pictures/ScreenShots
 bindsym XF86ScreenSaver exec --no-startup-id ~/.config/i3/lock-script.sh
+bindsym $Ctrl+Alt+l exec --no-startup-id ~/.config/i3/lock-script.sh
 bindsym XF86TouchpadToggle exec --no-startup-id ~/.config/i3/toggletouchpad.sh
 bindsym $mod+Shift+n exec zim
 
