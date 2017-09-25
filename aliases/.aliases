@@ -16,6 +16,8 @@ alias fcrm='\rm -rf'
 # alias webpd='wget -k -p -r' 
 alias webpd='wget -np -N -E -k -p -r -l5'
 alias xo='xdg-open'
+alias mountsigma='sshfs ist425489@sigma.tecnico.ulisboa.pt:/afs/.ist.utl.pt/users/8/9/ist425489 ~/Documents/tecnicosigma -C'
+alias umountsigma='fusermount -u ~/Documents/tecnicosigma'
 
 # Specific stuff to a computer goes here
 #{{{
