@@ -7,7 +7,8 @@ if [ -f $HOME/.Xmodmap ]; then
     xmodmap $HOME/.Xmodmap
 fi
 setxkbmap pt
-setxkbmap -option 'caps:ctrl_modifier'
+setxkbmap -option caps:escape
+# setxkbmap -option 'caps:ctrl_modifier'
 xcape -e 'Caps_Lock=Escape'
 xset r rate 150 55
 
