@@ -1,4 +1,4 @@
-#!/bin/bash
+ #!/bin/bas2
 
 CURDIR=$(pwd)
 cd $HOME/dotfiles
@@ -8,7 +8,7 @@ BACKUPFOLDER=$(date +backup-%d-%m-%yat%I-%M-%S);
 mkdir $HOME/dotfiles/$BACKUPFOLDER;
 
 # files that go in home
-DIRS1=("bash" "aliases" "zsh" "X" "git" "systemd" "gtk-3.0" "compton")
+DIRS1=("bash" "aliases" "zsh" "X" "git" "systemd" "gtk-3.0" "compton" "yaourt")
 # directories that go in ~/.config/
 DIRS2=("i3" "i3status" "dunst" "rofi" "rofi-pass" "gtk-3.0")
 # directories that go in home
