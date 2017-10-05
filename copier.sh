@@ -10,7 +10,7 @@ mkdir $HOME/dotfiles/$BACKUPFOLDER;
 # files that go in home
 DIRS1=("bash" "aliases" "zsh" "X" "git" "systemd" "compton" "yaourt")
 # directories that go in ~/.config/
-DIRS2=("i3" "i3status" "dunst" "rofi" "rofi-pass")
+DIRS2=("i3" "i3status" "dunst" "rofi" "rofi-pass" "conky")
 # directories that go in home
 DIRS3=("ssh" "vim" "gnupg")
 
