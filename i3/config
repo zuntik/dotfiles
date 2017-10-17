@@ -273,6 +273,9 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 # Sreen brightness controls
 # bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 # bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+# https://stackoverflow.com/questions/23866335/arch-xbacklight-no-outputs-have-backlight-property#33361550
+bindsym XF86MonBrightnessUp exec light -A 10
+bindsym XF86MonBrightnessDown exec light -U 5
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
@@ -299,6 +302,8 @@ bindsym XF86Calculator exec speedcrunch
 bindsym $mod+Shift+d exec dropbox
 bindsym Print exec xfce4-screenshooter -r -s ~/Pictures/ScreenShots
 bindsym XF86ScreenSaver exec --no-startup-id ~/.config/i3/lock-script.sh
+# bindsym Control_L+Alt_L+l exec --no-startup-id ~/.config/i3/lock-script.sh
+bindsym $mod+Shift+b exec --no-startup-id ~/.config/i3/lock-script.sh
 bindsym $Ctrl+Alt+l exec --no-startup-id ~/.config/i3/lock-script.sh
 bindsym XF86TouchpadToggle exec --no-startup-id ~/.config/i3/toggletouchpad.sh
 bindsym $mod+Shift+n exec zim
