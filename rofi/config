@@ -1,3 +1,5 @@
+! "Theme"
+rofi.theme: /usr/share/rofi/themes//Pop-Dark.rasi
 ! "Enabled modi"
 rofi.modi:                           drun,run,window
 ! "Window width"
@@ -8,14 +10,6 @@ rofi.lines:                          7
 rofi.columns:                        1
 ! "Font to use"
 rofi.font:                           mono 12
-! "Color scheme for normal row"
-rofi.color-normal:                   argb:0383c4a, #c4cbd4, argb:0383c4a, #4084d6, #f9f9f9
-! "Color scheme for urgent row"
-rofi.color-urgent:                   argb:02d303b, #cc6666, argb:e52d303b, #a54242, #f9f9f9
-! "Color scheme for active row"
-rofi.color-active:                   argb:02d303b, #b5bd68, argb:e42d303b, #8c9440, #f9f9f9
-! "Color scheme window"
-rofi.color-window:                   argb:f22d303b, #7c8389, #1d1f21
 ! "Border width"
 rofi.bw:                             0
 ! "Location on screen"
@@ -220,6 +214,5 @@ rofi.kb-custom-19:                   Alt+parenleft
 ! rofi.display-windowcd:               
 ! "The display name of this browser"
 ! rofi.display-combi:                  
-
 
 ! vim:filetype=xdefaults
