@@ -219,6 +219,8 @@ for_window [title="Save"] move position center
 for_window [title="pinentry"] floating enable
 for_window [title="pinentry"] move position center
 for_window [title="Opening"] move position center
+for_window [title="Figure"] floating enable
+for_window [title="Popcorn-Time"] border pixel $bordersize
 
 
 # open specific applications on specific workspaces
@@ -297,6 +299,7 @@ exec --no-startup-id dunst
 
 # Handy keybindings
 bindsym $mod+Shift+f exec firefox
+bindsym $mod+b exec rambox
 bindsym $mod+Shift+Return exec [ -f /usr/bin/xcwd ] && thunar "`xcwd`" || thunar;
 bindsym XF86Calculator exec speedcrunch
 bindsym $mod+Shift+d exec dropbox
