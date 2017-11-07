@@ -90,6 +90,7 @@ if has("autocmd")
 	\| exe "normal! g'\"" | endif
 endif
 
+set t_RS= t_RC= t_SH=
 
 " show command in bottom bar
 " set showcmd
@@ -121,17 +122,8 @@ Plug 'tpope/vim-eunuch'
 " http://vimawesome.com/plugin/vim-latex-live-preview
 Plug 'xuhdev/vim-latex-live-preview'
 
-" http://vimawesome.com/plugin/tagbar
-Plug 'majutsushi/tagbar'
-
 " http://vimawesome.com/plugin/indent-guides
 Plug 'nathanaelkane/vim-indent-guides'
-
-" http://vimawesome.com/plugin/vim-colorschemes-sweeter-than-fiction
-Plug 'flazz/vim-colorschemes'
-
-" https://vimawesome.com/plugin/colorizer-sparks-fly
-Plug 'lilydjwg/colorizer'
 
 " Initialize plugin system
 call plug#end()
@@ -150,10 +142,10 @@ let g:livepreview_previewer = 'zathura'
 let g:indent_guides_start_level = 1
 let g:indent_guides_enable_on_vim_startup = 1
 
-try
-    colorscheme railscasts
-catch /^Vim\%((\a\+)\)\=:E185/
-endtry
+" colorscheme delek
+colorscheme desert
+" colorscheme koehler
+" colorscheme slate
 
 " Maybies:
 " http://vimawesome.com/plugin/c-vim-the-thing-itself
