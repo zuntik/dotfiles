@@ -12,6 +12,9 @@ setxkbmap -option caps:escape
 xcape -e 'Caps_Lock=Escape'
 xset r rate 150 55
 
+if [ -x /usr/bin/numlockx ]; then
+      /usr/bin/numlockx on
+fi
 
 export GTK_THEME=Arc firefox
 
