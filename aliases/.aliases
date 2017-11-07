@@ -8,7 +8,7 @@ alias octave='octave-cli'
 alias svim='sudo vim'
 alias push='pushd .'
 alias pop='popd'
-alias ud='yaourt -Syu'
+alias ud='yaourt -Syua'
 alias cleanpackages='sudo pacman -Rns $(pacman -Qtdq)'
 alias pwd_end_bit="pwd | sed 's#.*/##'"
 alias pwd_from_within='echo $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )'
@@ -20,6 +20,14 @@ alias mountsigma='sshfs ist425489@sigma.tecnico.ulisboa.pt:/afs/.ist.utl.pt/user
 alias umountsigma='fusermount -u ~/Documents/tecnicosigma'
 alias check_network='nmap -sn 192.168.1.0/24'
 alias fixpermitions='chmod -x+X -R'
+alias matlab='matlab -nodisplay -nosplash'
+alias pixelcolour='grabc'
+alias start='sudo systemctl restart'
+alias stop='sudo systemctl stop'
+alias loop='watch -n 5'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias diskspace='df -h'
 
 # Specific stuff to a computer goes here
 #{{{
@@ -88,6 +96,7 @@ function zipdir()
 tsm() { transmission-remote --list ;}
 	# numbers of ip being blocked by the blocklist
 	# credit: smw from irc #transmission
+tsm-loop() {  watch -n 10 transmission-remote --list ;}
 tsm-clearcompleted() {
         transmission-remote -l | grep 100% | grep Done | \
         awk '{print $1}' | xargs -n 1 -I % transmission-remote -t % -r ;}
