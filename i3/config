@@ -38,7 +38,8 @@ floating_modifier $mod
 focus_follows_mouse yes
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id [ -f /usr/bin/xcwd ] && (xterm -e "cd '`xcwd`' && /bin/zsh") || xterm ;
+#bindsym $mod+Return exec --no-startup-id [ -f /usr/bin/xcwd ] && (terminator -e "cd '`xcwd`' && /bin/zsh") || terminator ;
+bindsym $mod+Return exec --no-startup-id terminator ;
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -116,6 +117,9 @@ bindsym $mod+Alt_L scratchpad show
 bindsym $mod+Ctrl+Right workspace next
 bindsym $mod+Ctrl+Left workspace prev
 bindsym $mod+Ctrl+Tab workspace next
+bindsym $mod+Ctrl+j workspace prev
+bindsym $mod+Ctrl+ccedilla workspace next
+
 
 set $workspace1  "1"
 set $workspace2  "2"
@@ -299,8 +303,10 @@ exec --no-startup-id dunst
 
 # Handy keybindings
 bindsym $mod+Shift+f exec firefox
+bindsym $mod+Shift+t exec --no-startup-id xterm
 bindsym $mod+b exec rambox
-bindsym $mod+Shift+Return exec [ -f /usr/bin/xcwd ] && thunar "`xcwd`" || thunar;
+#bindsym $mod+Shift+Return exec [ -f /usr/bin/xcwd ] && thunar "`xcwd`" || thunar;
+bindsym $mod+Shift+Return exec thunar;
 bindsym XF86Calculator exec speedcrunch
 bindsym $mod+Shift+d exec dropbox
 bindsym Print exec xfce4-screenshooter -r -s ~/Pictures/ScreenShots
