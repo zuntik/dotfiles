@@ -1,4 +1,4 @@
- #!/bin/bas2
+ #!/bin/bash
 
 CURDIR=$(pwd)
 cd $HOME/dotfiles
@@ -10,12 +10,15 @@ mkdir $HOME/dotfiles/$BACKUPFOLDER;
 # files that go in home
 DIRS1=("bash" "aliases" "zsh" "X" "git" "systemd" "compton" "yaourt")
 # directories that go in ~/.config/
-DIRS2=("i3" "i3status" "dunst" "rofi" "rofi-pass" "conky")
+DIRS2=("i3" "i3status" "dunst" "rofi" "rofi-pass" "conky" "periscope")
 # directories that go in home
 DIRS3=("ssh" "vim" "gnupg")
 
 for DIR in "${DIRS1[@]}"
 do
+    if [ ! -d "$DIR" ];then
+        continue
+    fi
     cd "$DIR"
     for FILE in .* 
     do
@@ -32,6 +35,9 @@ done
 mkdir -p $HOME/.config/
 for DIR in "${DIRS2[@]}"
 do
+    if [ ! -d "$DIR" ];then
+        continue
+    fi
     if [ -d $HOME/.config/$DIR ] || [ -h $HOME/.config/$DIR ]; then
         mv $HOME/.config/$DIR $HOME/dotfiles/$BACKUPFOLDER/
     fi
@@ -40,6 +46,9 @@ done
 
 for DIR in "${DIRS3[@]}"
 do
+    if [ ! -d "$DIR" ];then
+        continue
+    fi
     mkdir -p "$HOME/.$DIR"
     cd $DIR
     for FILE in *
