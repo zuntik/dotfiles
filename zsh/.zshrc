@@ -134,8 +134,21 @@ case $TERM in
 esac
 
 # My prompt
-PROMPT='[%F{red}%n@%M%F{white}] [%F{green}%T%F{white}] [%F{yellow}%~%F{white}] 
- %F{white}->%F{014} '
+#PROMPT='[%F{red}%n@%M%F{white}] [%F{green}%T%F{white}] [%F{yellow}%~%F{white}] 
+# %F{white}->%F{014} '
+function zle-line-init zle-keymap-select {
+    VIM_PROMPT="%{$fg_bold[yellow]%}[% NORMAL]% %{$reset_color%}"
+	PROMPT="[%F{red}%n@%M%F{white}] [%F{green}%T%F{white}] [%F{yellow}%~%F{white}] ${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/[INSERT]} $EPS1
+ %F{white}-> %F{grey}"
+    #PROMPT="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/[INSERT]} %? $EPS1"
+    zle reset-prompt
+}
+#PROMPT="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} %? $EPS1"
+PROMPT=$'[%F{red}%n@%M%F{white}] [%F{green}%T%F{white}] [%F{yellow}%~%F{white}] ${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/[INSERT]} %? $EPS1
+ %F{white}->%F{014} %{\e[0m%}'
+zle -N zle-line-init
+zle -N zle-keymap-select
+
 
 bindkey -v
 
@@ -151,3 +164,6 @@ path+=($HOME'/bin')
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # vim:foldmethod=marker:foldlevel=0
+
+
+
