@@ -61,6 +61,15 @@ do
     cd ..
 done
 
+
+# Deal with daemons
+unset answer
+echo -n "Do you wish to initialize other daemons like mpd? [Y/n] "
+read answer
+if [ "$answer" == "Y" -o "$answer" == "y" -o -z "$answer" ] ; then
+    systemctl enable --user mpd
+fi
+
 [[ -a $HOME/.config/systemd/ ]] && mv $HOME/.config/systemd/ $HOME/dotfiles/$BACKUPFOLDER
 cd systemd/user/
 for FILE in *
@@ -77,8 +86,6 @@ read answer
 if [ "$answer" == "Y" -o "$answer" == "y" -o -z "$answer" ] ; then
         vim +PlugUpgrade +qall
         vim +PlugInstall +qall
-else
-    echo "nothing else to be done"
 fi
 
 cd $CURDIR
