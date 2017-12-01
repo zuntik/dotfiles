@@ -16,7 +16,7 @@ if [ -x /usr/bin/numlockx ]; then
       /usr/bin/numlockx on
 fi
 
-export GTK_THEME=Arc firefox
+#export GTK_THEME=Arc firefox
 
 exec i3
 
