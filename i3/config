@@ -210,9 +210,6 @@ for_window [class="(?i)system-config-printer.py"] floating enable
 for_window [class="skype"] floating enable
 for_window [class="(?i)virtualbox"] floating enable
 for_window [class="Gelemental"] floating enable
-for_window [class="Gnome-dictionary"] floating enable
-for_window [class="Gnome-dictionary"] resize set 640 480
-for_window [class="Gnome-dictionary"] move position center
 for_window [class="Zim"] floating enable
 for_window [class="Zim"] resize set 640 480
 for_window [class="Zim"] move position center
@@ -225,6 +222,9 @@ for_window [title="pinentry"] move position center
 for_window [title="Opening"] move position center
 for_window [title="Figure"] floating enable
 for_window [title="Popcorn-Time"] border pixel $bordersize
+for_window [class="XTerm"] floating enable
+for_window [class="XTerm"]  resize set 700 600
+for_window [class="XTerm"] move position center
 
 
 # open specific applications on specific workspaces
@@ -284,10 +284,15 @@ bindsym XF86MonBrightnessUp exec light -A 10
 bindsym XF86MonBrightnessDown exec light -U 5
 
 # Media player controls
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+#bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPlay exec --no-startup-id mpc toggle
+#bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioPause exec --no-startup-id mpc pause
+#bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioNext exec --no-startup-id mpc next
+#bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPrev exec --no-startup-id mpc prev
+bindsym XF86AudioStop exec --no-startup-id mpc stop
 
 #Touchpad
 exec_always --no-startup-id synclient TapButton1=1
@@ -316,13 +321,11 @@ bindsym $mod+Shift+b exec --no-startup-id ~/.config/i3/lock-script.sh
 bindsym $Ctrl+Alt+l exec --no-startup-id ~/.config/i3/lock-script.sh
 bindsym XF86TouchpadToggle exec --no-startup-id ~/.config/i3/toggletouchpad.sh
 bindsym $mod+Shift+n exec zim
-
-
+bindsym $mod+Shift+m exec --no-startup-id xterm -e ncmpcpp
 
 #############################
 ### settings for i3-gaps: ###
 #############################
-
 
 # Set shut down, restart and locking features
 bindsym $mod+Shift+p mode "$mode_system"
@@ -394,4 +397,5 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
+
 
