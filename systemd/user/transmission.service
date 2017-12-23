@@ -1,0 +1,9 @@
+[Unit]
+Description=Transmission Daemon torrent downloader
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/transmission-daemon -f
+
+[Install]
+WantedBy=default.target
