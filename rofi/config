@@ -1,7 +1,7 @@
 ! "Theme"
 rofi.theme: /usr/share/rofi/themes//Pop-Dark.rasi
 ! "Enabled modi"
-rofi.modi:                           drun,run,window
+rofi.modi:                           combi,drun,run,window
 ! "Window width"
 rofi.width:                          50
 ! "Number of lines"
