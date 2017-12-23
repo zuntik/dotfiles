@@ -92,6 +92,16 @@ endif
 
 set t_RS= t_RC= t_SH=
 
+" Keep undo history across sessions by storing it in a file
+if has('persistent_undo')
+    let undo_dir = expand('$HOME/.vim/undo_dir')
+    if !isdirectory(undo_dir)
+        call mkdir(undo_dir, "", 0700)
+    endif
+    set undodir=$HOME/.vim/undo_dir
+    set undofile
+endif
+
 " show command in bottom bar
 " set showcmd
 
@@ -125,10 +135,36 @@ Plug 'xuhdev/vim-latex-live-preview'
 " http://vimawesome.com/plugin/indent-guides
 Plug 'nathanaelkane/vim-indent-guides'
 
+" https://vimawesome.com/plugin/fugitive-vim
+Plug 'tpope/vim-fugitive'
+
+Plug 'airblade/vim-gitgutter'
+
+Plug 'itchyny/lightline.vim'
+
 " Initialize plugin system
 call plug#end()
 
 " Plugin configuration
+
+" lightline
+
+" set lightline to include git-branch
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ,
+      \             [ 'venv', 'readonly'] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head',
+      \   'venv': 'virtualenv#statusline'
+      \ },
+      \ }
+
+" Always show statusbar
+set laststatus=2
 
 "ultisnips
 let g:UltiSnipsExpandTrigger='<c-j>'
@@ -161,7 +197,6 @@ colorscheme desert
 " http://vimawesome.com/plugin/syntastic
 " http://vimawesome.com/plugin/autoclose
 " http://vimawesome.com/plugin/supertab
-" http://vimawesome.com/plugin/fugitive-vim
 " http://vimawesome.com/plugin/vim-closetag
 " https://github.com/octol/vim-cpp-enhanced-highlight
 " http://vimawesome.com/plugin/vim-javascript
