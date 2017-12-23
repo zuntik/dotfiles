@@ -35,3 +35,4 @@
     use_system_font = False
   [[Whatever]]
     background_type = transparent
+    cursor_color = "#aaaaaa"
