@@ -191,7 +191,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # hide/unhide i3status bar
-bindsym $mod+m bar mode toggle
+bindsym $mod+Shift+m bar mode toggle
 
 # open specific applications in floating mode
 # to find out class run xprop and click on window
@@ -251,6 +251,7 @@ client.background       #ffffff
 bar {
 
     #status_command          i3blocks -c ~/.config/i3/i3blocks.conf
+    #status_command          i3blocks -c ~/.config/i3blocks/i3blocks.conf
     status_command i3status
     tray_output             primary
     position                bottom
@@ -306,6 +307,9 @@ exec --no-startup-id feh --no-fehbg --bg-center ~/Pictures/wallpaper.jpg
 exec --no-startup-id compton
 exec --no-startup-id dunst
 
+#Displays the current song as a notification
+exec --no-startup-id while :; do notify-send --urgency=low -i "audio-headphones" "$(mpc current --wait)"; done
+
 # Handy keybindings
 bindsym $mod+Shift+f exec firefox
 bindsym $mod+Shift+t exec --no-startup-id xterm
@@ -316,12 +320,13 @@ bindsym XF86Calculator exec speedcrunch
 bindsym $mod+Shift+d exec dropbox
 bindsym Print exec xfce4-screenshooter -r -s ~/Pictures/ScreenShots
 bindsym XF86ScreenSaver exec --no-startup-id ~/.config/i3/lock-script.sh
+bindsym Pause exec --no-startup-id ~/.config/i3/lock-script.sh
 # bindsym Control_L+Alt_L+l exec --no-startup-id ~/.config/i3/lock-script.sh
 bindsym $mod+Shift+b exec --no-startup-id ~/.config/i3/lock-script.sh
 bindsym $Ctrl+Alt+l exec --no-startup-id ~/.config/i3/lock-script.sh
 bindsym XF86TouchpadToggle exec --no-startup-id ~/.config/i3/toggletouchpad.sh
 bindsym $mod+Shift+n exec zim
-bindsym $mod+Shift+m exec --no-startup-id xterm -e ncmpcpp
+bindsym $mod+m exec --no-startup-id xterm -e ncmpcpp
 
 #############################
 ### settings for i3-gaps: ###
