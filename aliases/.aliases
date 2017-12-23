@@ -3,7 +3,8 @@
 alias ist='cd ~/Dropbox/Faculdade'
 alias time='/usr/bin/time'
 alias save='git add . ; git commit -m '
-alias myip='curl ifconfig.me' # my external ip
+alias public_ip='curl ifconfig.me' # my external ip
+alias private_ip='ip addr show'
 alias octave='octave-cli'
 alias svim='sudo vim'
 alias push='pushd .'
@@ -99,7 +100,7 @@ function zipdir()
 tsm() { transmission-remote --list ;}
 	# numbers of ip being blocked by the blocklist
 	# credit: smw from irc #transmission
-tsm-loop() {  watch -n 10 transmission-remote --list ;}
+tsm-loop() {  watch -n 10 "transmission-remote --list"}
 tsm-clearcompleted() {
         transmission-remote -l | grep 100% | grep Done | \
         awk '{print $1}' | xargs -n 1 -I % transmission-remote -t % -r ;}
