@@ -44,10 +44,16 @@ do
     if [ ! -d "$DIR" ];then
         continue
     fi
-    if [ -d $HOME/.config/$DIR ] || [ -h $HOME/.config/$DIR ]; then
-        mv $HOME/.config/$DIR $HOME/dotfiles/$BACKUPFOLDER/
-    fi
-    ln -s $HOME/dotfiles/$DIR $HOME/.config/
+    mkdir -p "$HOME/.config/$DIR"
+    cd $DIR
+    for FILE in *
+    do
+        if [ -e $HOME/.config/$DIR/$FILE ] || [ -h $HOME/.config/$DIR/$FILE ]; then
+            mv "$HOME/.config/$DIR/$FILE" $HOME/dotfiles/$BACKUPFOLDER
+        fi
+        ln -s "$HOME/dotfiles/$DIR/$FILE" "$HOME/.config/$DIR/"
+    done
+    cd ..
 done
 # }}}
 
@@ -80,14 +86,14 @@ echo -n "Do you wish to initialize other daemons like mpd? [Y/n] "
 read answer
 if [ "$answer" == "Y" -o "$answer" == "y" -o -z "$answer" ] ; then
     systemctl enable --user mpd
+    [[ -a $HOME/.config/systemd/ ]] && mv $HOME/.config/systemd/ $HOME/dotfiles/$BACKUPFOLDER
+    cd systemd/user/
+    for FILE in *
+    do
+        systemctl --user enable $HOME/dotfiles/systemd/user/$FILE
+    done
 fi
 
-[[ -a $HOME/.config/systemd/ ]] && mv $HOME/.config/systemd/ $HOME/dotfiles/$BACKUPFOLDER
-cd systemd/user/
-for FILE in *
-do
-    systemctl --user enable $HOME/dotfiles/systemd/user/$FILE
-done
 # }}}
 
 
