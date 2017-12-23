@@ -1,4 +1,4 @@
- #!/bin/bash
+#!/bin/bash
 
 CURDIR=$(pwd)
 cd $HOME/dotfiles
@@ -14,6 +14,8 @@ DIRS2=("i3" "i3status" "dunst" "rofi" "rofi-pass" "conky" "periscope" "terminato
 # directories that go in home
 DIRS3=("ssh" "vim" "gnupg")
 
+# files that go in home
+#{{{
 for DIR in "${DIRS1[@]}"
 do
     if [ ! -d "$DIR" ];then
@@ -31,7 +33,11 @@ do
     done
     cd ..
 done
+#}}}
 
+
+# directories that go in ~/.config/
+# {{{
 mkdir -p $HOME/.config/
 for DIR in "${DIRS2[@]}"
 do
@@ -43,7 +49,11 @@ do
     fi
     ln -s $HOME/dotfiles/$DIR $HOME/.config/
 done
+# }}}
 
+
+# directories that go in home
+# {{{
 for DIR in "${DIRS3[@]}"
 do
     if [ ! -d "$DIR" ];then
@@ -60,9 +70,11 @@ do
     done
     cd ..
 done
+# }}}
 
 
 # Deal with daemons
+# {{{
 unset answer
 echo -n "Do you wish to initialize other daemons like mpd? [Y/n] "
 read answer
@@ -76,9 +88,11 @@ for FILE in *
 do
     systemctl --user enable $HOME/dotfiles/systemd/user/$FILE
 done
+# }}}
+
 
 # Deal with vim plugins
-
+#{{{
 unset answer
 echo -n "Do you wish to initialize vim plugins? [Y/n] "
 read answer
@@ -87,5 +101,8 @@ if [ "$answer" == "Y" -o "$answer" == "y" -o -z "$answer" ] ; then
         vim +PlugUpgrade +qall
         vim +PlugInstall +qall
 fi
+#}}}
 
 cd $CURDIR
+
+# vim:foldmethod=marker:foldlevel=0
