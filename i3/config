@@ -286,14 +286,14 @@ bindsym XF86MonBrightnessDown exec light -U 5
 
 # Media player controls
 #bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPlay exec --no-startup-id mpc toggle
+bindsym XF86AudioPlay exec --no-startup-id mpc toggle -h ~/.local/share/mpd/socket
 #bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioPause exec --no-startup-id mpc pause
+bindsym XF86AudioPause exec --no-startup-id mpc pause -h ~/.local/share/mpd/socket
 #bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioNext exec --no-startup-id mpc next
+bindsym XF86AudioNext exec --no-startup-id mpc next -h ~/.local/share/mpd/socket
 #bindsym XF86AudioPrev exec playerctl previous
-bindsym XF86AudioPrev exec --no-startup-id mpc prev
-bindsym XF86AudioStop exec --no-startup-id mpc stop
+bindsym XF86AudioPrev exec --no-startup-id mpc prev -h ~/.local/share/mpd/socket
+bindsym XF86AudioStop exec --no-startup-id mpc stop -h ~/.local/share/mpd/socket
 
 #Touchpad
 exec_always --no-startup-id synclient TapButton1=1
@@ -306,9 +306,6 @@ exec_always --no-startup-id synclient ClickFinger2=3
 exec --no-startup-id feh --no-fehbg --bg-center ~/Pictures/wallpaper.jpg
 exec --no-startup-id compton
 exec --no-startup-id dunst
-
-#Displays the current song as a notification
-exec --no-startup-id while :; do notify-send --urgency=low -i "audio-headphones" "$(mpc current --wait)"; done
 
 # Handy keybindings
 bindsym $mod+Shift+f exec firefox
