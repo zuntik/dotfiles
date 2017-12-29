@@ -93,7 +93,6 @@ if [ "$answer" == "Y" -o "$answer" == "y" -o -z "$answer" ] ; then
         systemctl --user enable $HOME/dotfiles/systemd/user/$FILE
     done
 fi
-
 # }}}
 
 
