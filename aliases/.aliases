@@ -1,5 +1,3 @@
-#!/usr/bin/bash
-
 alias ist='cd ~/Dropbox/Faculdade'
 alias time='/usr/bin/time'
 alias save='git add . ; git commit -m '
@@ -28,9 +26,11 @@ alias start='sudo systemctl restart'
 alias ustart='systemctl restart --user'
 alias stop='sudo systemctl stop'
 alias ustop='systemctl stop --user'
+alias status='systemctl status'
 alias loop='watch -n 5'
 alias ..='cd ..'
 alias ...='cd ../..'
+alias ....='cd ../../..'
 alias diskspace='df -h'
 
 # Specific stuff to a computer goes here
@@ -100,7 +100,14 @@ function zipdir()
 tsm() { transmission-remote --list ;}
 	# numbers of ip being blocked by the blocklist
 	# credit: smw from irc #transmission
-tsm-loop() {  watch -n 10 "transmission-remote --list"}
+tsm-loop() {  watch -n 5 "\
+    transmission-remote --list ; [[ \$(transmission-remote --list) == *\"100%\"* ]] && notify-send download_complete \
+";}
+tsm-notfyifcomplete() {
+    if [[ $(transmission-remote --list) == *"100%"* ]] ; then
+        notify-send download_complete
+    fi
+}
 tsm-clearcompleted() {
         transmission-remote -l | grep 100% | grep Done | \
         awk '{print $1}' | xargs -n 1 -I % transmission-remote -t % -r ;}
@@ -155,4 +162,4 @@ yt-180p30fps() { youtube-dl -f 248+171 "$1" ;}
 yt-180p60fps() { youtube-dl -f 303+171 "$1" ;}
 # }}}
 
-# " vim:foldmethod=marker:foldlevel=0
+# " vim:foldmethod=marker:foldlevel=0:filetype=sh
