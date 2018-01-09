@@ -1,8 +1,23 @@
-# Should you change your keyboard layout some time, delete# this file and re-run i3-config-wizard(1).  # i3 config file (v4)
+# i3 config file
 
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+#############################
+######## i3 basics: #########
+#############################
+# {{{
+
+# Use windows key as modifier
 set $mod Mod4
+
+# start a terminal
+#bindsym $mod+Return exec --no-startup-id [ -f /usr/bin/xcwd ] && (terminator -e "cd '`xcwd`' && /bin/zsh") || terminator ;
+bindsym $mod+Return exec --no-startup-id terminator ;
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start dmenu (a program launcher)
+bindsym $mod+d exec --no-startup-id rofi -show
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -12,12 +27,31 @@ set $mod Mod4
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:DejaVu Sans Mono 8
 
+# set default desktop layout (default is tiling)
+# workspace_layout tabbed <stacking|tabbed>
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# hide/unhide i3status bar
+bindsym $mod+Shift+m bar mode toggle
+
+# }}}
+
+
+#############################
+######### borders: ##########
+#############################
+# {{{
+
 # Sizes for the border: the first is for normal windows the second is for floating windows
 set $bordersize 3
 set $bordersize2 3
-
-# set default desktop layout (default is tiling)
-# workspace_layout tabbed <stacking|tabbed>
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 new_window pixel $bordersize
@@ -31,22 +65,15 @@ bindsym $mod+u border none
 bindsym $mod+y border pixel $bordersize
 bindsym $mod+t border normal
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+# }}}
 
-# Focus follow mouse
-focus_follows_mouse yes
 
-# start a terminal
-#bindsym $mod+Return exec --no-startup-id [ -f /usr/bin/xcwd ] && (terminator -e "cd '`xcwd`' && /bin/zsh") || terminator ;
-bindsym $mod+Return exec --no-startup-id terminator ;
+#############################
+##### moves and focus: ######
+#############################
+# {{{
 
-# kill focused window
-bindsym $mod+Shift+q kill
-
-# start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id rofi -show
-bindsym $mod+p exec --no-startup-id rofi-pass
+# Should you change your keyboard layout some time, delete# this file and re-run i3-config-wizard(1).
 
 # change focus
 bindsym $mod+j focus left
@@ -156,14 +183,6 @@ bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9 
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -188,10 +207,21 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# Focus follow mouse
+focus_follows_mouse yes
+
 bindsym $mod+r mode "resize"
 
-# hide/unhide i3status bar
-bindsym $mod+Shift+m bar mode toggle
+# }}}
+
+
+#############################
+### specific window rules: ##
+#############################
+# {{{
 
 # open specific applications in floating mode
 # to find out class run xprop and click on window
@@ -226,10 +256,17 @@ for_window [class="XTerm"] floating enable
 for_window [class="XTerm"]  resize set 700 600
 for_window [class="XTerm"] move position center
 
-
 # open specific applications on specific workspaces
 # example
 # assign[class="Firefox"] $workspace2
+
+# }}}
+
+
+#############################
+####### colour rules: #######
+#############################
+# {{{
 
 set_from_resource $txtcol1 i3wm.colortext1
 set_from_resource $txtcol2 i3wm.colortext2
@@ -245,6 +282,14 @@ client.unfocused        $colback    $colback    $txtcol2    $colback    $colback
 client.urgent           $colurgt    $colurgt    $txtcol1    $colurgt    $colurgt
 client.placeholder      #000000     #0c0c0c     $txtcol1    #0c0c0c     #0c0c0c
 client.background       #ffffff
+
+# }}}
+
+
+#############################
+###### bar behaviour: #######
+#############################
+# {{{
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -272,6 +317,14 @@ bar {
 
 }
 
+# }}}
+
+
+#############################
+### important system keyb: ##
+#############################
+# {{{
+
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
@@ -284,6 +337,33 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 bindsym XF86MonBrightnessUp exec light -A 10
 bindsym XF86MonBrightnessDown exec light -U 5
 
+#Touchpad
+exec_always --no-startup-id synclient TapButton1=1
+exec_always --no-startup-id synclient TapButton2=3
+exec_always --no-startup-id synclient VertTwoFingerScroll=1
+exec_always --no-startup-id synclient HorizTwoFingerScroll=1
+exec_always --no-startup-id synclient ClickFinger2=3
+
+# }}}
+
+
+#############################
+##### Autostart stuff: ######
+#############################
+# {{{
+
+exec --no-startup-id feh --no-fehbg --bg-center ~/Pictures/wallpaper.jpg
+exec --no-startup-id compton
+exec --no-startup-id dunst
+
+# }}}
+
+
+#############################
+#### Handy keybindings: #####
+#############################
+# {{{
+
 # Media player controls
 #bindsym XF86AudioPlay exec playerctl play
 bindsym XF86AudioPlay exec --no-startup-id mpc toggle -h ~/.local/share/mpd/socket
@@ -295,19 +375,6 @@ bindsym XF86AudioNext exec --no-startup-id mpc next -h ~/.local/share/mpd/socket
 bindsym XF86AudioPrev exec --no-startup-id mpc prev -h ~/.local/share/mpd/socket
 bindsym XF86AudioStop exec --no-startup-id mpc stop -h ~/.local/share/mpd/socket
 
-#Touchpad
-exec_always --no-startup-id synclient TapButton1=1
-exec_always --no-startup-id synclient TapButton2=3
-exec_always --no-startup-id synclient VertTwoFingerScroll=1
-exec_always --no-startup-id synclient HorizTwoFingerScroll=1
-exec_always --no-startup-id synclient ClickFinger2=3
-
-#Autostart stuff
-exec --no-startup-id feh --no-fehbg --bg-center ~/Pictures/wallpaper.jpg
-exec --no-startup-id compton
-exec --no-startup-id dunst
-
-# Handy keybindings
 bindsym $mod+Shift+f exec firefox
 bindsym $mod+Shift+t exec --no-startup-id xterm
 bindsym $mod+b exec rambox
@@ -324,10 +391,15 @@ bindsym $Ctrl+Alt+l exec --no-startup-id ~/.config/i3/lock-script.sh
 bindsym XF86TouchpadToggle exec --no-startup-id ~/.config/i3/toggletouchpad.sh
 bindsym $mod+Shift+n exec zim
 bindsym $mod+m exec --no-startup-id xterm -e ncmpcpp
+bindsym $mod+p exec --no-startup-id rofi-pass
+
+# }}}
+
 
 #############################
 ### settings for i3-gaps: ###
 #############################
+# {{{
 
 # Set shut down, restart and locking features
 bindsym $mod+Shift+p mode "$mode_system"
@@ -400,4 +472,6 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
+# }}}
 
+# " vim:foldmethod=marker:foldlevel=0:filetype=sh
