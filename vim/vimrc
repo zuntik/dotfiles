@@ -132,9 +132,6 @@ Plug 'tpope/vim-eunuch'
 " http://vimawesome.com/plugin/vim-latex-live-preview
 Plug 'xuhdev/vim-latex-live-preview'
 
-" http://vimawesome.com/plugin/indent-guides
-Plug 'nathanaelkane/vim-indent-guides'
-
 " https://vimawesome.com/plugin/fugitive-vim
 Plug 'tpope/vim-fugitive'
 
@@ -204,6 +201,7 @@ colorscheme desert
 " https://github.com/octol/vim-cpp-enhanced-highlight
 " http://vimawesome.com/plugin/vim-javascript
 " https://github.com/vim-airline/vim-airline
+" http://vimawesome.com/plugin/indent-guides
 
 " }}}
 
