@@ -138,9 +138,13 @@ Plug 'tpope/vim-fugitive'
 " https://github.com/tpope/vim-rhubarb
 Plug 'tpope/vim-rhubarb'
 
+" https://github.com/airblade/vim-gitgutter
 Plug 'airblade/vim-gitgutter'
 
 Plug 'itchyny/lightline.vim'
+
+" http://vimawesome.com/plugin/vim-closetag
+Plug 'alvan/vim-closetag'
 
 " Initialize plugin system
 call plug#end()
@@ -183,6 +187,38 @@ colorscheme desert
 " colorscheme koehler
 " colorscheme slate
 
+" Git gutter
+" let g:gitgutter_enabled = 0
+let g:gitgutter_signs = 0
+
+
+" vim-closetag
+
+" filenames like *.xml, *.html, *.xhtml, ...
+" Then after you press > in these files, this plugin will try to close the current tag.
+"
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+
+" filenames like *.xml, *.xhtml, ...
+" This will make the list of non closing tags self closing in the specified files.
+"
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+
+" integer value [0|1]
+" This will make the list of non closing tags case sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
+"
+let g:closetag_emptyTags_caseSensitive = 1
+
+" Shortcut for closing tags, default is '>'
+"
+let g:closetag_shortcut = '>'
+
+" Add > at current position without closing the current tag, default is ''
+"
+let g:closetag_close_shortcut = '<leader>>'
+
+
+
 " Maybies:
 " http://vimawesome.com/plugin/c-vim-the-thing-itself
 " http://vimawesome.com/plugin/repeat-vim
@@ -197,7 +233,6 @@ colorscheme desert
 " http://vimawesome.com/plugin/syntastic
 " http://vimawesome.com/plugin/autoclose
 " http://vimawesome.com/plugin/supertab
-" http://vimawesome.com/plugin/vim-closetag
 " https://github.com/octol/vim-cpp-enhanced-highlight
 " http://vimawesome.com/plugin/vim-javascript
 " https://github.com/vim-airline/vim-airline

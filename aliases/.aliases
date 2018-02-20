@@ -2,7 +2,7 @@ alias ist='cd ~/Dropbox/Faculdade'
 alias time='/usr/bin/time'
 alias save='git add . ; git commit -m '
 alias public_ip='curl ifconfig.me' # my external ip
-alias private_ip='ip addr show'
+alias private_ip='ip -c addr show'
 alias octave='octave-cli'
 alias svim='sudo vim'
 alias push='pushd .'
@@ -33,6 +33,8 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias diskspace='df -h'
+alias filespace='du -sch'
+alias rg='ranger'
 
 # Specific stuff to a computer goes here
 #{{{
@@ -74,7 +76,7 @@ function ex ()
       *.rar)	    unrar x $1					;;
       *.zip)	    unzip $1 -d $( echo  $1 | sed 's/.zip//' )	;;
       *.Z)	    uncompress $1				;;
-      *.7z)	    7z -x $1					;;
+      *.7z)	    7z x $1					;;
       *)	    echo "'$1' cannot be extracted via ex"	;;
     esac
   else
@@ -163,4 +165,13 @@ yt-180p30fps() { youtube-dl -f 248+171 "$1" ;}
 yt-180p60fps() { youtube-dl -f 303+171 "$1" ;}
 # }}}
 
+# usermount
+
+usermount-iso() { udevil mount "$1" ;}
+userumount-iso() { udevil unmount "$1" ;}
+usermount-usb() { udisksctl mount -b "$1" ;}
+usermount-usb() { udisksctl unmount -b "$1" ;}
+
+
 # " vim:foldmethod=marker:foldlevel=0:filetype=sh
+

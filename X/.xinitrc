@@ -18,6 +18,10 @@ fi
 
 #export GTK_THEME=Arc firefox
 
+export GTK_CSD=0
+export LD_PRELOAD=/usr/lib/libgtk3-nocsd.so.0
+export QT_QPA_PLATFORMTHEME="qt5ct"
+
 exec i3
 
 # vim: filetype=sh
