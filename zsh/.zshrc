@@ -119,6 +119,8 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
@@ -156,12 +158,15 @@ bindkey '^R' history-incremental-search-backward
 
 # Source aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
+[[ -f ~/.aliases2 ]] && source ~/.aliases2
 
 # Add bin to path
 path+=($HOME'/bin')
 
 [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && \
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+bindkey '^L' clear-screen 
 
 setopt autocd
 # vim:foldmethod=marker:foldlevel=0

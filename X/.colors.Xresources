@@ -1,47 +1,3 @@
-! Base16 Tomorrow Night
-! Scheme: Chris Kempson (http://chriskempson.com)
-
-#define base00 #1d1f21
-#define base01 #282a2e
-#define base02 #373b41
-#define base03 #969896
-#define base04 #b4b7b4
-#define base05 #c5c8c6
-#define base06 #e0e0e0
-#define base07 #ffffff
-#define base08 #cc6666
-#define base09 #de935f
-#define base0A #f0c674
-#define base0B #b5bd68
-#define base0C #8abeb7
-#define base0D #81a2be
-#define base0E #b294bb
-#define base0F #a3685a
-#define fgcolour base05
-#define bgcolour base00
-#define cscolour base05
-
-
-! #define base00 #000000
-! #define base01 #cc0000
-! #define base02 #4e9a06
-! #define base03 #c4a000
-! #define base04 #3465a4
-! #define base05 #75507b
-! #define base06 #06989a
-! #define base07 #d3d7cf
-! #define base08 #555753
-! #define base09 #ef2929
-! #define base0A #8ae234
-! #define base0B #fce94f
-! #define base0C #729fcf
-! #define base0D #ad7fa8
-! #define base0E #34e2e2
-! #define base0F #eeeeec
-! #define fgcolour #1d1f21
-! #define bgcolour #1d1f21
-! #define cscolour #e9422b
-
 !####################
 !###### Themes ######
 !####################
@@ -51,47 +7,47 @@
 ! !------------------------------------------------------
 ! 
 ! !!Source http://github.com/altercation/solarized
-! 
-! *background: #002b36
-! *foreground: #657b83
-! !!*fading: 40
-! *fadeColor: #002b36
-! *cursorColor: #93a1a1
-! *pointerColorBackground: #586e75
-! *pointerColorForeground: #93a1a1
-! 
-! !! black dark/light
-! *color0: #073642
-! *color8: #002b36
-! 
-! !! red dark/light
-! *color1: #dc322f
-! *color9: #cb4b16
-! 
-! !! green dark/light
-! *color2: #859900
-! *color10: #586e75
-! 
-! !! yellow dark/light
-! *color3: #b58900
-! *color11: #657b83
-! 
-! !! blue dark/light
-! *color4: #268bd2
-! *color12: #839496
-! 
-! !! magenta dark/light
-! *color5: #d33682
-! *color13: #6c71c4
-! 
-! !! cyan dark/light
-! *color6: #2aa198
-! *color14: #93a1a1
-! 
-! !! white dark/light
-! *color7: #eee8d5
-! *color15: #fdf6e3
-! 
+
+*background: #002b36
+*foreground: #657b83
+!!*fading: 40
+*fadeColor: #002b36
+*cursorColor: #93a1a1
+*pointerColorBackground: #586e75
+*pointerColorForeground: #93a1a1
+
+!! black dark/light
+*color0: #073642
+*color8: #002b36
+
+!! red dark/light
+*color1: #dc322f
+*color9: #cb4b16
+
+!! green dark/light
+*color2: #859900
+*color10: #586e75
+
+!! yellow dark/light
+*color3: #b58900
+*color11: #657b83
+
+!! blue dark/light
+*color4: #268bd2
+*color12: #839496
+
+!! magenta dark/light
+*color5: #d33682
+*color13: #6c71c4
+
+!! cyan dark/light
+*color6: #2aa198
+*color14: #93a1a1
+
+!! white dark/light
+*color7: #eee8d5
+*color15: #fdf6e3
+
 ! ! }}}
 ! !-------- Theme: Rezza {{{
 ! !------------------------------------------------------
@@ -774,7 +730,77 @@
 !
 !
 ! ! }}}
+! !-------- Theme: Base16 Tomorrow Night {{{
+! !------------------------------------------------------
+!
+! 
+! Scheme: Chris Kempson (http://chriskempson.com)
+
+! Added by me
+
+! #define base00 #1d1f21
+! #define base01 #282a2e
+! #define base02 #373b41
+! #define base03 #969896
+! #define base04 #b4b7b4
+! #define base05 #c5c8c6
+! #define base06 #e0e0e0
+! #define base07 #ffffff
+! #define base08 #cc6666
+! #define base09 #de935f
+! #define base0A #f0c674
+! #define base0B #b5bd68
+! #define base0C #8abeb7
+! #define base0D #81a2be
+! #define base0E #b294bb
+! #define base0F #a3685a
+! #define fgcolour base05
+! #define bgcolour base00
+! #define cscolour base05
+
+! #define base00 #000000
+! #define base01 #cc0000
+! #define base02 #4e9a06
+! #define base03 #c4a000
+! #define base04 #3465a4
+! #define base05 #75507b
+! #define base06 #06989a
+! #define base07 #d3d7cf
+! #define base08 #555753
+! #define base09 #ef2929
+! #define base0A #8ae234
+! #define base0B #fce94f
+! #define base0C #729fcf
+! #define base0D #ad7fa8
+! #define base0E #34e2e2
+! #define base0F #eeeeec
+! #define fgcolour #1d1f21
+! #define bgcolour #1d1f21
+! #define cscolour #e9422b
+
+! XTerm*.foreground:   fgcolour
+! XTerm*.background:   bgcolour
+! XTerm*.cursorColor:  cscolour
+! 
+! XTerm*.color0:       base00
+! XTerm*.color1:       base08
+! XTerm*.color2:       base0B
+! XTerm*.color3:       base0A
+! XTerm*.color4:       base0D
+! XTerm*.color5:       base0E
+! XTerm*.color6:       base0C
+! XTerm*.color7:       base05
+! 
+! XTerm*.color8:       base03
+! XTerm*.color9:       base08
+! XTerm*.color10:      base0B
+! XTerm*.color11:      base0A
+! XTerm*.color12:      base0D
+! XTerm*.color13:      base0E
+! XTerm*.color14:      base0C
+! XTerm*.color15:      base07
 
 
+! ! }}}
 
 ! vim:filetype=xdefaults:foldmethod=marker:foldlevel=0

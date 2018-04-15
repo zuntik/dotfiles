@@ -19,6 +19,7 @@ set smartindent   " smarter indent for C-like languages
 set shiftwidth=4  " when reading, tabs are 4 spaces
 set softtabstop=4 " in insert mode, tabs are 4 spaces
 set expandtab	  " new tabs make spaces
+set tabstop=4
 
 " search settings
 set incsearch	  " find the next match as we type the search
@@ -49,7 +50,6 @@ if has("gui_running")
     set guioptions-=T "remove toolbar
     set guioptions-=r "remove right-hand scroll bar
     set guioptions-=L "remove left-hand scroll bar
-    colorscheme slate
 end
 
 " remove the .ext~ files, but not the swapfiles
@@ -66,7 +66,7 @@ set directory=~/.vim/swp//
 " set showtabline=2
 
 " keep the cursor visible within 3 lines when scrolling
-set scrolloff=5
+" set scrolloff=5
 
 set foldenable
 set foldmethod=indent   " fold based on indent level
@@ -108,9 +108,36 @@ endif
 " Key mappings settings
 " http://vim.wikia.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_1)
 
-nmap <S-Enter> O<Esc>
-nmap <CR> o<Esc>
+" nmap <S-Enter> O<Esc>
+" nmap <CR> o<Esc>
 
+" " CTRL-Tab is next tab
+" noremap <C-Tab> :tabnext<CR>
+" noremap <C-J> :tabnext<CR>
+" inoremap <C-Tab> <C-\><C-N>:tabnext<CR>
+" inoremap <C-J> <C-\><C-N>:tabnext<CR>
+" cnoremap <C-Tab> <C-C>:tabnext<CR>
+" cnoremap <C-J> <C-C>:tabnext<CR>
+" " CTRL-SHIFT-Tab is previous tab
+" noremap <C-S-Tab> :<C-U>tabprevious<CR>
+" noremap <C-K> :<C-U>tabprevious<CR>
+" inoremap <C-S-Tab> <C-\><C-N>:tabprevious<CR>
+" inoremap <C-K> <C-\><C-N>:tabprevious<CR>
+" cnoremap <C-S-Tab> <C-C>:tabprevious<CR>
+" cnoremap <C-K> <C-C>:tabprevious<CR>
+
+" https://stackoverflow.com/questions/3878692/aliasing-a-command-in-vim
+" Aliases creator Function
+" Call it with:
+" call SetupCommandAlias("W","w")
+" Then the Comman \"W" will work as  \"w"
+fun! SetupCommandAlias(from, to)
+  exec 'cnoreabbrev <expr> '.a:from
+        \ .' ((getcmdtype() is# ":" && getcmdline() is# "'.a:from.'")'
+        \ .'? ("'.a:to.'") : ("'.a:from.'"))'
+endfun
+
+set colorcolumn=81
 
 " }}}
 
@@ -118,11 +145,11 @@ nmap <CR> o<Esc>
 " -----------------------PLUGIN CONFIGURATION------------------------
 " -------------------------------------------------------------------
 " Plugin list and settings are here
+" Colorcheme theming also goes here
 " {{{
 
 call plug#begin('~/.vim/bundle')
 
-Plug 'honza/vim-snippets'
 Plug 'ajh17/VimCompletesMe'
 
 " http://vimawesome.com/plugin/vim-snippets
@@ -134,7 +161,7 @@ Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-eunuch'	
 
 " http://vimawesome.com/plugin/vim-latex-live-preview
-Plug 'xuhdev/vim-latex-live-preview'
+ "Plug 'xuhdev/vim-latex-live-preview'
 
 " https://vimawesome.com/plugin/fugitive-vim
 Plug 'tpope/vim-fugitive'
@@ -145,21 +172,51 @@ Plug 'tpope/vim-rhubarb'
 " https://github.com/airblade/vim-gitgutter
 Plug 'airblade/vim-gitgutter'
 
+" https://github.com/itchyny/lightline.vim
 Plug 'itchyny/lightline.vim'
 
 " http://vimawesome.com/plugin/vim-closetag
 Plug 'alvan/vim-closetag'
+
+" https://github.com/vim-scripts/Conque-GDB
+Plug 'vim-scripts/Conque-GDB'
+
+" https://github.com/altercation/vim-colors-solarized
+Plug 'altercation/vim-colors-solarized'
+
+" http://vimawesome.com/plugin/indent-guides
+Plug 'nathanaelkane/vim-indent-guides'
+
+
+" https://vimawesome.com/plugin/matlabfilesedition
+Plug 'vim-scripts/MatlabFilesEdition'
 
 " Initialize plugin system
 call plug#end()
 
 " Plugin configuration
 
+" tests if colorscheme exists
+try
+    colorscheme solarized
+catch /^Vim\%((\a\+)\)\=:E185/
+endtry
+
+" vim-gitgutter
+call SetupCommandAlias("GGS","GitGutterSignsEnable")
+
 " lightline
+
+" conquegdb
+let g:ConqueTerm_StartMessages = 0
+
+call SetupCommandAlias("CVS","ConqueGdbVSplit")
+
+set background=dark
 
 " set lightline to include git-branch
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'solarized',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ,
@@ -178,6 +235,7 @@ set laststatus=2
 let g:UltiSnipsExpandTrigger='<c-j>'
 let g:UltiSnipsJumpForwardTrigger='<c-j>'
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:tex_flavor = "latex"
 
 " vim-latex-live-preview
 let g:livepreview_previewer = 'zathura'
@@ -185,11 +243,6 @@ let g:livepreview_previewer = 'zathura'
 " indent-guides
 let g:indent_guides_start_level = 1
 let g:indent_guides_enable_on_vim_startup = 1
-
-" colorscheme delek
-colorscheme desert
-" colorscheme koehler
-" colorscheme slate
 
 " Git gutter
 " let g:gitgutter_enabled = 0
@@ -221,8 +274,6 @@ let g:closetag_shortcut = '>'
 "
 let g:closetag_close_shortcut = '<leader>>'
 
-
-
 " Maybies:
 " http://vimawesome.com/plugin/c-vim-the-thing-itself
 " http://vimawesome.com/plugin/repeat-vim
@@ -239,10 +290,7 @@ let g:closetag_close_shortcut = '<leader>>'
 " http://vimawesome.com/plugin/supertab
 " https://github.com/octol/vim-cpp-enhanced-highlight
 " http://vimawesome.com/plugin/vim-javascript
-" https://github.com/vim-airline/vim-airline
-" http://vimawesome.com/plugin/indent-guides
 
 " }}}
-
 
 " vim:foldmethod=marker:foldlevel=0

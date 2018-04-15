@@ -5,16 +5,14 @@
 #include ".colors.Xresources"
 #endif
 
-
 !-------- i3 theme settings {{{
 !------------------------------------------------------
 i3wm.colortext1:        #ffffff
 i3wm.colortext2:        #888888
 i3wm.colorurgent:       #D64E4E
 !i3wm.colorbackground:   #212121
-i3wm.colorbackground:   base00
+i3wm.colorbackground:   #002b36
 ! }}}
-
 !-------- Xterm Terminal Settings {{{
 !------------------------------------------------------
 ! https://wiki.archlinux.org/index.php/Xterm
@@ -32,6 +30,7 @@ XTerm.termName: xterm-256color
 ! Fonts ====================================================
 ! set font and fontsize
 XTerm*faceName: hack
+XTerm*font:     *-fixed-*-*-*-24-*
 XTerm*borderWidth: 0
 XTerm*faceSize: 9
 
@@ -53,14 +52,6 @@ XTerm*VT100*translations: #override Shift <Btn1Up>: exec-formatted("firefox '%t'
 ! Ensure that your locale is set up for UTF-8. If you do not use UTF-8, you may need to force xterm to more strictly follow your locale by setting
 XTerm.vt100.locale: true
 XTerm*utf8: 2
-
-! Cursor ====================================================
-! pointer and cursor (blinking and color)
-XTerm*pointerColor: white
-XTerm*pointerColorBackground: black
-XTerm*cursorColor: white
-XTerm*cursorBlink: true
-
 
 !! Selecting Text ========================================================
 ! Only select text
@@ -126,29 +117,6 @@ XTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
 *VT100*translations: #override Shift <Btn1Up>: exec-formatted("xdg-open '%t'", PRIMARY)
 
 
-!! Theme ========================================================
-XTerm*.foreground:   fgcolour
-XTerm*.background:   bgcolour
-XTerm*.cursorColor:  cscolour
-
-XTerm*.color0:       base00
-XTerm*.color1:       base08
-XTerm*.color2:       base0B
-XTerm*.color3:       base0A
-XTerm*.color4:       base0D
-XTerm*.color5:       base0E
-XTerm*.color6:       base0C
-XTerm*.color7:       base05
-
-XTerm*.color8:       base03
-XTerm*.color9:       base08
-XTerm*.color10:      base0B
-XTerm*.color11:      base0A
-XTerm*.color12:      base0D
-XTerm*.color13:      base0E
-XTerm*.color14:      base0C
-XTerm*.color15:      base07
-
 ! <BtnUp>:select-end(SELECT, CUT_BUFFER0) \n\
 ! Ctrl <Btn4Down>:scroll-back(1,halfpage,m) \n\
 ! <Btn4Down>:scroll-back(5,line,m) \n\
@@ -186,29 +154,6 @@ XTerm*.color15:      base07
 !                              <BtnDown>:ignore()
 
 
-
-! http://forums.fedoraforum.org/showpost.php?p=1538211&postcount=3
-! https://stackoverflow.com/a/29551654
-! XTerm*title: xterm
-! XTerm*background: #011622
-! XTerm*foreground: WhiteSmoke
-! XTerm*pointerColor: white
-! XTerm*pointerColorBackground: #011622
-! XTerm*cursorColor: #EBD27D
-! XTerm*internalBorder: 3
-! XTerm*loginShell: true
-! XTerm*scrollBar: false
-! XTerm*scrollKey: true
-! XTerm*saveLines: 1250
-! XTerm*multiClickTime: 250
-! XTerm*Geometry: 140x50+110+60
-! XTerm*renderFont: true
-
-! set fontsize
-! xterm*font:     *-fixed-*-*-*-24-*
-! set font
-! xterm*faceName: Monospace
 ! }}}
-
 
 ! vim:foldmethod=marker:foldlevel=0

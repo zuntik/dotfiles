@@ -1,4 +1,6 @@
 set noloadplugins
 set mouse=a
 
+so ~/.vim/bundle/vim-colors-solarized/colors/solarized.vim
+
 " vim:filetype=vim

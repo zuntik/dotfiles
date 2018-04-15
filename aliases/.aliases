@@ -1,5 +1,5 @@
 alias save='git add . ; git commit -m '
-alias public_ip='curl ifconfig.me' # my external ip
+alias public_ip='curl https://canihazip.com/s && echo ""' # my external ip
 alias private_ip='ip -c addr show'
 alias octave='octave-cli'
 alias svim='sudo vim'
@@ -30,7 +30,11 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias diskspace='df -h'
 alias filespace='du -sch'
-alias rg='ranger'
+alias rg='ranger --choosedir=$HOME/.local/share/rangerdir;cd "$(cat $HOME/.local/share/rangerdir)"'
+alias allprocesses='ps axjf'
+
+# Hilights a word without filtering
+hl () { grep -E "^|$1" --color='always' ;}
 
 # Specific stuff to a computer goes here
 #{{{
@@ -160,6 +164,15 @@ yt-720p60fps() { youtube-dl -f 302+171 "$1" ;}
 yt-180p30fps() { youtube-dl -f 248+171 "$1" ;}
 yt-180p60fps() { youtube-dl -f 303+171 "$1" ;}
 # }}}
+
+#multivim
+multivim() {
+    for i in "$@";
+    do
+        (terminator -e "vim $i" &)
+    done
+}
+
 
 # usermount
 

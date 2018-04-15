@@ -10,11 +10,11 @@
 set $mod Mod4
 
 # start a terminal
-#bindsym $mod+Return exec --no-startup-id [ -f /usr/bin/xcwd ] && (terminator -e "cd '`xcwd`' && /bin/zsh") || terminator ;
-bindsym $mod+Return exec --no-startup-id terminator ;
+bindsym $mod+Return exec --no-startup-id [ -f /usr/bin/xcwd ] && (xterm -e "cd '`xcwd`' && /bin/zsh") || xterm ;
 
 # kill focused window
 bindsym $mod+Shift+q kill
+bindsym Alt_L+F4 kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id rofi -show
@@ -37,6 +37,23 @@ bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# Set shut down, restart and locking features
+bindsym $mod+Shift+p mode "$mode_system"
+set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown, (i)3-exit
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+    bindsym i exec --no-startup-id i3-msg exit
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
 
 # hide/unhide i3status bar
 bindsym $mod+Shift+m bar mode toggle
@@ -64,6 +81,8 @@ hide_edge_borders none
 bindsym $mod+u border none
 bindsym $mod+y border pixel $bordersize
 bindsym $mod+t border normal
+
+hide_edge_borders smart
 
 # }}}
 
@@ -255,9 +274,9 @@ for_window [title="pinentry"] move position center
 for_window [title="Opening"] move position center
 for_window [title="Figure"] floating enable
 for_window [title="Popcorn-Time"] border pixel $bordersize
-for_window [class="XTerm"] floating enable
-for_window [class="XTerm"]  resize set 700 600
-for_window [class="XTerm"] move position center
+for_window [class="XTerm" title="ncmpcpp"] floating enable
+for_window [class="XTerm" title="ncmpcpp"] resize set 700 600
+for_window [class="XTerm" title="ncmpcpp"] move position center
 
 # open specific applications on specific workspaces
 # example
@@ -337,8 +356,8 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 # bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 # bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 # https://stackoverflow.com/questions/23866335/arch-xbacklight-no-outputs-have-backlight-property#33361550
-bindsym XF86MonBrightnessUp exec light -A 10
-bindsym XF86MonBrightnessDown exec light -U 5
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
 
 #Touchpad
 exec_always --no-startup-id synclient TapButton1=1
@@ -380,11 +399,11 @@ bindsym XF86AudioStop exec --no-startup-id mpc stop -h ~/.local/share/mpd/socket
 
 bindsym $mod+Shift+f exec firefox
 bindsym $mod+Shift+t exec --no-startup-id xterm
-bindsym $mod+b exec rambox
+bindsym $mod+b exec --no-startup-id rambox
 #bindsym $mod+Shift+Return exec [ -f /usr/bin/xcwd ] && thunar "`xcwd`" || thunar;
 bindsym $mod+Shift+Return exec thunar;
 bindsym XF86Calculator exec speedcrunch
-bindsym $mod+Shift+d exec dropbox
+bindsym $mod+Shift+d exec --no-startup-id dropbox
 bindsym Print exec xfce4-screenshooter -r -s ~/Pictures/ScreenShots
 bindsym XF86ScreenSaver exec --no-startup-id ~/.config/i3/lock-script.sh
 bindsym Pause exec --no-startup-id ~/.config/i3/lock-script.sh
@@ -393,7 +412,7 @@ bindsym $mod+Shift+b exec --no-startup-id ~/.config/i3/lock-script.sh
 bindsym $Ctrl+Alt+l exec --no-startup-id ~/.config/i3/lock-script.sh
 bindsym XF86TouchpadToggle exec --no-startup-id ~/.config/i3/toggletouchpad.sh
 bindsym $mod+Shift+n exec zim
-bindsym $mod+m exec --no-startup-id xterm -e ncmpcpp
+bindsym $mod+m exec --no-startup-id "xterm -e ncmpcpp"
 bindsym $mod+p exec --no-startup-id rofi-pass
 
 # }}}
@@ -403,24 +422,6 @@ bindsym $mod+p exec --no-startup-id rofi-pass
 ### settings for i3-gaps: ###
 #############################
 # {{{
-
-# Set shut down, restart and locking features
-bindsym $mod+Shift+p mode "$mode_system"
-set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown, (i)3-exit
-mode "$mode_system" {
-    bindsym l exec --no-startup-id i3exit lock, mode "default"
-    bindsym s exec --no-startup-id i3exit suspend, mode "default"
-    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
-    bindsym e exec --no-startup-id i3exit logout, mode "default"
-    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
-    bindsym i exec --no-startup-id i3-msg exit
-
-    # exit system mode: "Enter" or "Escape"
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
 
 # Set inner/outer gaps
 # gaps inner 10
