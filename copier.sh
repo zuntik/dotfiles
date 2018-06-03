@@ -8,9 +8,9 @@ BACKUPFOLDER=$(date +backup-%d-%m-%yat%I-%M-%S);
 mkdir $HOME/dotfiles/$BACKUPFOLDER;
 
 # files that go in home
-DIRS1=("bash" "aliases" "zsh" "X" "git" "systemd" "compton" "yaourt" "dircolors")
+DIRS1=("bash" "aliases" "zsh" "X" "systemd" "compton" "dircolors")
 # directories that go in ~/.config/
-DIRS2=("i3" "i3status" "dunst" "rofi" "rofi-pass" "conky" "periscope" "mpv" "mpd" "ncmpcpp" "ranger")
+DIRS2=("i3" "i3status" "dunst" "rofi" "rofi-pass" "conky" "periscope" "mpv" "mpd" "ncmpcpp" "ranger" "git")
 # directories that go in home
 DIRS3=("ssh" "vim" "gnupg")
 

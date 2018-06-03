@@ -11,6 +11,7 @@ set $mod Mod4
 
 # start a terminal
 bindsym $mod+Return exec --no-startup-id [ -f /usr/bin/xcwd ] && (xterm -e "cd '`xcwd`' && /bin/zsh") || xterm ;
+#bindsym $mod+Return exec --no-startup-id st
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -298,12 +299,12 @@ set_from_resource $colback i3wm.colorbackground
 
 # Colours
 # class                 border      backgr.     text        indicator   child_border
-client.focused          #2B83A6     #2B83A6     $txtcol1    #2B83A6     #2B83A6 
-client.focused_inactive #5f676a     #5f676a     $txtcol1    #5f676a     #5f676a
+client.focused          #268bd2     #268bd2     $txtcol1    #268bd2     #268bd2 
+client.focused_inactive #657b83     #657b83     $txtcol1    #657b83     #657b83
 client.unfocused        $colback    $colback    $txtcol2    $colback    $colback
 client.urgent           $colurgt    $colurgt    $txtcol1    $colurgt    $colurgt
 client.placeholder      #000000     #0c0c0c     $txtcol1    #0c0c0c     #0c0c0c
-client.background       #ffffff
+client.background       #002b36
 
 # }}}
 
@@ -317,9 +318,8 @@ client.background       #ffffff
 # finds out, if available)
 bar {
 
-    #status_command          i3blocks -c ~/.config/i3/i3blocks.conf
-    #status_command          i3blocks -c ~/.config/i3blocks/i3blocks.conf
     status_command i3status
+    #status_command i3blocks
     tray_output             primary
     position                bottom
     strip_workspace_numbers yes
@@ -331,7 +331,7 @@ bar {
             statusline  #DDDDDD
             separator   #666666
             # class             border  backgr. text
-            focused_workspace   #2B83A6 #2B83A6 $txtcol1
+            focused_workspace   #268bd2 #268bd2 $txtcol1
             active_workspace    $colback $colback $txtcol1
             inactive_workspace  $colback $colback $txtcol2
             urgent_workspace    $colurgt $colurgt $txtcol1
@@ -398,10 +398,10 @@ bindsym XF86AudioPrev exec --no-startup-id mpc prev -h ~/.local/share/mpd/socket
 bindsym XF86AudioStop exec --no-startup-id mpc stop -h ~/.local/share/mpd/socket
 
 bindsym $mod+Shift+f exec firefox
-bindsym $mod+Shift+t exec --no-startup-id xterm
+bindsym $mod+Shift+t exec --no-startup-id st
 bindsym $mod+b exec --no-startup-id rambox
-#bindsym $mod+Shift+Return exec [ -f /usr/bin/xcwd ] && thunar "`xcwd`" || thunar;
-bindsym $mod+Shift+Return exec thunar;
+bindsym $mod+Shift+Return exec [ -f /usr/bin/xcwd ] && thunar "`xcwd`" || thunar;
+#bindsym $mod+Shift+Return exec thunar;
 bindsym XF86Calculator exec speedcrunch
 bindsym $mod+Shift+d exec --no-startup-id dropbox
 bindsym Print exec xfce4-screenshooter -r -s ~/Pictures/ScreenShots

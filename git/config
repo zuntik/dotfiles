@@ -1,0 +1,56 @@
+# For the user name and email stuff remember to use a file named "user" on the 
+# same directory as this config with the following text as a template:
+######
+#[user]
+#    email = email@example.com
+#    name = example
+#####
+[include]
+    path = user
+[core]
+    editor = vim
+    excludesfile = ~/.config/git/gitignore
+    hooksPath = ~/.config/git/hooks/
+[color]
+    diff = auto
+    ui = auto
+    branch = auto
+    status = auto
+    decorate = auto
+    showbranch = auto
+    pager = true
+    grep = auto
+    interactive = auto
+[credential]
+    helper = cache --timeout=3600
+[push]
+    default = simple
+[advice]
+    statusHints = false
+    commitBeforeMerge = false
+    detachedHead = false
+    implicitIdentity = false
+    pushNonFastForward = false
+    resolveConflict = false
+    pushUpdateRejected = false
+    rmHints = false
+    amWorkDir = false
+    statusUoption = false
+    pushNeedsForce = false
+    pushFetchFirst = false
+    pushAlreadyExists = false
+    pushNonFFCurrent = false
+[alias]
+    fancylog = log --oneline --decorate --graph --all
+    sstatus = status --short
+    unstage = reset HEAD --
+    visual = !gitk --all
+    copystage = checkout-index -f
+    branchcommit = checkout -b
+    lsalias = config --get-regexp alias
+    detailremote = remote show
+    submodulesud = submodule foreach git pull origin master
+[diff]
+    tool = vimdiff
+[merge]
+    tool = vimdiff

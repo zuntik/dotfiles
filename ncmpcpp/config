@@ -520,7 +520,8 @@ state_line_color = default
 
 state_flags_color = default:b
 
-main_window_highlight_color = cyan
+current_item_prefix = "$(cyan)$r"
+current_item_suffix =  "$/r$(end)"
 
 main_window_color = 13
 
@@ -544,4 +545,5 @@ window_border_color = green
 
 active_window_border = red
 
-active_column_color = 4
+current_item_inactive_column_prefix =  "$(4)$r"
+current_item_inactive_column_suffix = "$/r$(end)"

@@ -131,7 +131,8 @@ export EDITOR="vim"
 # If this is an xterm set the title to user@host:dir
 case $TERM in
     xterm*|rxvt*)
-        precmd () {print -Pn "\e]0;%n@%m: %~\a"}
+        # precmd () {print -Pn "\e]0;%n@%m: %~\a"}
+        precmd () {print -Pn "\e]0;%n@%m - $TERM\a"}
         ;;
 esac
 

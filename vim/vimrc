@@ -6,6 +6,7 @@
 
 " To set enumerations
 " set number
+" set number relativenumber
 
 " Turn on syntax highlighting
 syntax on
@@ -22,7 +23,7 @@ set expandtab	  " new tabs make spaces
 set tabstop=4
 
 " search settings
-set incsearch	  " find the next match as we type the search
+" set incsearch	  " find the next match as we type the search
 set hlsearch	  " hilight searches by default
 
 
@@ -126,6 +127,10 @@ endif
 " cnoremap <C-S-Tab> <C-C>:tabprevious<CR>
 " cnoremap <C-K> <C-C>:tabprevious<CR>
 
+"keybindings to move between tabs
+noremap <C-h> :tabprevious<CR>
+noremap <C-l> :tabnext<CR>
+
 " https://stackoverflow.com/questions/3878692/aliasing-a-command-in-vim
 " Aliases creator Function
 " Call it with:
@@ -184,10 +189,6 @@ Plug 'vim-scripts/Conque-GDB'
 " https://github.com/altercation/vim-colors-solarized
 Plug 'altercation/vim-colors-solarized'
 
-" http://vimawesome.com/plugin/indent-guides
-Plug 'nathanaelkane/vim-indent-guides'
-
-
 " https://vimawesome.com/plugin/matlabfilesedition
 Plug 'vim-scripts/MatlabFilesEdition'
 
@@ -239,10 +240,6 @@ let g:tex_flavor = "latex"
 
 " vim-latex-live-preview
 let g:livepreview_previewer = 'zathura'
-
-" indent-guides
-let g:indent_guides_start_level = 1
-let g:indent_guides_enable_on_vim_startup = 1
 
 " Git gutter
 " let g:gitgutter_enabled = 0

@@ -15,6 +15,7 @@ xcuserdata/
 *.o
 *.pyc
 *.hi
+*.out
 
 #Python modules
 MANIFEST
