@@ -1,8 +1,8 @@
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-setopt nomatch
-unsetopt appendhistory autocd beep extendedglob notify
+setopt nomatch autocd
+unsetopt appendhistory beep extendedglob notify
 
 # Completion
 # {{{
@@ -103,10 +103,13 @@ setopt correct
 # command for process lists, the local web server details and host completion
 zstyle ':completion:*:urls' local 'www' '/var/www/' 'public_html'
 
-# }}}
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 autoload -Uz compinit
 compinit
+
+# }}}
+
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then 
@@ -118,8 +121,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
-
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
@@ -147,15 +148,23 @@ function zle-line-init zle-keymap-select {
     zle reset-prompt
 }
 #PROMPT="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} %? $EPS1"
-PROMPT=$'[%F{red}%n@%M%F{white}] [%F{green}%T%F{white}] [%F{yellow}%~%F{white}] ${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/[INSERT]} %? $EPS1
- %F{white}->%F{014} %{\e[0m%}'
-zle -N zle-line-init
-zle -N zle-keymap-select
 
+#PROMPT=$'[%F{red}%n@%M%F{white}] [%F{green}%T%F{white}] [%F{yellow}%~%F{white}] ${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/[INSERT]} %? $EPS1
+# %F{white}\ue0b0->%F{014} %{\e[0m%}'
 
-bindkey -v
-
+#zle -N zle-line-init
+#zle -N zle-keymap-select
 bindkey '^R' history-incremental-search-backward
+
+bindkey -e
+
+
+#autoload -Uz promptinit
+#promptinit
+#prompt redhat
+
+#source ~/mytheme.zsh
+source ~/.prompt.zsh
 
 # Source aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
@@ -169,5 +178,4 @@ path+=($HOME'/bin')
 
 bindkey '^L' clear-screen 
 
-setopt autocd
 # vim:foldmethod=marker:foldlevel=0

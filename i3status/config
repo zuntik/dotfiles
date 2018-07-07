@@ -39,8 +39,8 @@ ethernet enp0s3 {
 #wireless wls1 {
 wireless wlp3s0 {
 	#format_up = "%essid - %ip"
-	format_up = "%essid"
-	format_down = "Internet Down"
+	format_up = " %essid"
+	format_down = " Internet Down"
 }
 
 battery 0 {
@@ -48,9 +48,9 @@ battery 0 {
 	hide_seconds = "true"
 	path = "/sys/class/power_supply/BAT%d/uevent"
 	format = "%status%percentage"
-	status_bat = ""
-	status_full = ""
-	status_chr = ""
+	status_bat = " "
+	status_full = " "
+	status_chr = " "
 	low_threshold = "15"
 	threshold_type = "percentage"
 	last_full_capacity = "true"
@@ -58,16 +58,16 @@ battery 0 {
 
 volume master {
 	device = "pulse"
-	format = "%volume"
-	format_muted = "%volume"
+	format = " %volume"
+	format_muted = " %volume"
 }
 
 tztime date {
-	format = "%a %d/%m/%Y"
+	format = " %a %d/%m/%Y"
 }
 
 tztime time {
-	format = "%H:%M"
+	format = " %H:%M"
 	#format = "%H:%M:%S"
 }
 

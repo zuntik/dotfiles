@@ -1,5 +1,10 @@
 ! "Theme"
-rofi.theme: /usr/share/rofi/themes//Pop-Dark.rasi
+
+rofi.color-window: #002b36, #268bd2
+rofi.color-normal: #002b36, #93a1a1, #002b36, #268bd2, #fdf6e3
+rofi.color-active: #b58900, #fdf6e3, #b58900, #268bd2, #fdf6e3
+rofi.color-urgent: #dc322f, #fdf6e3, #dc322f, #268bd2, #fdf6e3
+
 ! "Enabled modi"
 rofi.modi:                           combi,window
 ! "Window width"

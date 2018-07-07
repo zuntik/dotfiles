@@ -31,7 +31,9 @@ alias diskspace='df -h'
 alias filespace='du -sch'
 alias rg='ranger --choosedir=$HOME/.local/share/rangerdir;cd "$(cat $HOME/.local/share/rangerdir)"'
 alias allprocesses='ps axjf'
-alias smpv='mpv --cache=2048 --ontop --no-border --force-window --autofit=500x280 --geometry=-15-50'
+#alias smpv='mpv --cache=2048 --ontop --no-border --force-window --autofit=500x280 --geometry=-15-50'
+alias smpv='mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-50'
+alias memcheck='valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all --track-origins=yes'
 
 # Hilights a word without filtering
 hl () { grep -E "^|$1" --color='always' ;}
@@ -60,24 +62,24 @@ function ex ()
 {
   if [ -f $1 ] ; then
     case $1 in
-      *.tar)	    tar -xf $1					;;
-      *.tar.xz)	    tar -xJf $1					;;
-      *.txz)	    tar -xJf $1				        ;;
-      *.tar.bz2)    tar -xjf $1					;;
-      *.tbz2)	    tar -xjf $1					;;
-      *.tar.gz)	    tar -xzf $1					;;
-      *.tgz)	    tar -xzf $1					;;
-      *.tar.pixz)   tar -Ipixz -xf $1				;;
-      *.tpxz)	    tar -Ipixz -xf $1				;;
-      *.xz)	    xz -d $1					;;
-      *.pixz)	    pixz -d $1					;;
-      *.gz)	    gunzip $1					;;
-      *.bz2)	    bunzip2 $1					;;
-      *.rar)	    unrar x $1					;;
-      *.zip)	    unzip $1 -d $( echo  $1 | sed 's/.zip//' )	;;
-      *.Z)	    uncompress $1				;;
-      *.7z)	    7z x $1					;;
-      *)	    echo "'$1' cannot be extracted via ex"	;;
+      *.tar)        tar -xf $1                  ;;
+      *.tar.xz)     tar -xJf $1                 ;;
+      *.txz)        tar -xJf $1                     ;;
+      *.tar.bz2)    tar -xjf $1                 ;;
+      *.tbz2)       tar -xjf $1                 ;;
+      *.tar.gz)     tar -xzf $1                 ;;
+      *.tgz)        tar -xzf $1                 ;;
+      *.tar.pixz)   tar -Ipixz -xf $1               ;;
+      *.tpxz)       tar -Ipixz -xf $1               ;;
+      *.xz)     xz -d $1                    ;;
+      *.pixz)       pixz -d $1                  ;;
+      *.gz)     gunzip $1                   ;;
+      *.bz2)        bunzip2 $1                  ;;
+      *.rar)        unrar x $1                  ;;
+      *.zip)        unzip $1 -d $( echo  $1 | sed 's/.zip//' )  ;;
+      *.Z)      uncompress $1               ;;
+      *.7z)     7z x $1                 ;;
+      *)        echo "'$1' cannot be extracted via ex"  ;;
     esac
   else
     echo "'$1' is not a valid file"
@@ -91,7 +93,7 @@ function ex ()
 function zipdir()
 {
     if [ -d $1 ] ; then
-	zip
+    zip
     fi
 }
 # }}}
@@ -101,8 +103,8 @@ function zipdir()
 # {{{
 # https://www.youtube.com/watch?v=ee4XzWuapsE
 tsm() { transmission-remote --list ;}
-	# numbers of ip being blocked by the blocklist
-	# credit: smw from irc #transmission
+    # numbers of ip being blocked by the blocklist
+    # credit: smw from irc #transmission
 tsm-loop() {  watch -n 5 "\
     transmission-remote --list ; [[ \$(transmission-remote --list) == *\"100%\"* ]] && notify-send download_complete \
 ";}
@@ -115,20 +117,20 @@ tsm-clearcompleted() {
         transmission-remote -l | grep 100% | grep Done | \
         awk '{print $1}' | xargs -n 1 -I % transmission-remote -t % -r ;}
 tsm-count() { echo "Blocklist rules:" $(curl -s --data \
-	'{"method": "session-get"}' localhost:9091/transmission/rpc -H \
-	"$(curl -s -D - localhost:9091/transmission/rpc | grep X-Transmission-Session-Id)" \
-	| cut -d: -f 11 | cut -d, -f1) ;}
-tsm-blocklist() { $PATH_SCRIPTS/blocklist.sh ;}		# update blocklist
+    '{"method": "session-get"}' localhost:9091/transmission/rpc -H \
+    "$(curl -s -D - localhost:9091/transmission/rpc | grep X-Transmission-Session-Id)" \
+    | cut -d: -f 11 | cut -d, -f1) ;}
+tsm-blocklist() { $PATH_SCRIPTS/blocklist.sh ;}     # update blocklist
 tsm-daemon() { transmission-daemon ;}
 tsm-quit() { killall transmission-daemon ;}
-tsm-altspeedenable() { transmission-remote --alt-speed ;}	# limit bandwidth
-tsm-altspeeddisable() {	transmission-remote --no-alt-speed ;}	# dont limit bandwidth
+tsm-altspeedenable() { transmission-remote --alt-speed ;}   # limit bandwidth
+tsm-altspeeddisable() { transmission-remote --no-alt-speed ;}   # dont limit bandwidth
 tsm-add() { transmission-remote --add "$1" ;}
 tsm-askmorepeers() { transmission-remote -t"$1" --reannounce ;}
-tsm-pause() { transmission-remote -t"$1" --stop ;}		# <id> or all
-tsm-start() { transmission-remote -t"$1" --start ;}		# <id> or all
+tsm-pause() { transmission-remote -t"$1" --stop ;}      # <id> or all
+tsm-start() { transmission-remote -t"$1" --start ;}     # <id> or all
 tsm-purge() { transmission-remote -t"$1" --remove-and-delete ;} # delete data also
-tsm-remove() { transmission-remote -t"$1" --remove ;}		# leaves data alone
+tsm-remove() { transmission-remote -t"$1" --remove ;}       # leaves data alone
 tsm-info() { transmission-remote -t"$1" --info ;}
 tsm-speed() { while true;do clear; transmission-remote -t"$1" -i | grep Speed;sleep 1;done ;}
 # }}}
@@ -254,6 +256,7 @@ spp-viasathistory() { sppc "sop://broker.sopcast.com:3912/151300" ;}
 spp-zutv() { sppc "sop://broker.sopcast.com:3912/148252" ;}
 
 spp-bbc() { sppc "sop://broker.sopcast.com:3912/109227";}
+spp-digisport() { sppc "sop://broker.sopcast.com:3912/148886";}
 
 # format channel to functions quicker
 # e.g soprip newchannels.txt
@@ -277,6 +280,33 @@ soprip() {
 
 
 #}}}
+#-------- Acestream CLI (Streaming P2P Videos) {{{
+#------------------------------------------------------
+# DEMO: https://www.youtube.com/watch?v=dxar7KLsrg8
+# DESC: view streaming videos using acestream live feeds
+# LINK: https://github.com/jonian/acestream-launcher
+# FEED: https://www.google.com/#q=acestream://&tbs=qdr:w
+#       http://www.acesoplisting.in/
+#       http://arenavision.in/
+#       http://streams.magazinmixt.ro/
+#       http://www.livefootballol.me/acestream-channel-list-2016-1.html
+
+acestream-cvlc() { acestream-launcher --player cvlc "$@" ;}
+acestream-mpv() { acestream-launcher --player mpv "$@" ;}
+acestream-mplayer() { acestream-launcher --player mplayer "$@" ;}
+
+# choose a player (default is cvlc)
+# ACE_PLAYER=cvlc
+ACE_PLAYER=mpv
+
+tv-bbcone-eng() { acestream-launcher --player "$ACE_PLAYER" acestream://955b73334677d32e3a832d092066ab48c67efb7a ;}
+tv-tele5-spa() { acestream-launcher --player "$ACE_PLAYER" acestream://97f0eaa031804b7c9f5b7f60599047254d9128b1 ;}
+tv-espn-eng() { acestream-launcher --player "$ACE_PLAYER" acestream://5d25598468b68aabc1d908921cea98062c7f8739 ;}
+tv-espn-deportes-spa() { acestream-launcher --player "$ACE_PLAYER" acestream://0a0be3253e0374f5f6323391c62b244eed5673c6 ;}
+tv-beinsports-fr() { acestream-launcher --player "$ACE_PLAYER" acestream://b5950a56db8f722876dc74443d74b565fb99368f ;}
+tv-tennis() { acestream-launcher --player "$ACE_PLAYER" acestream://f3b9d8f1575cf21be3db910af0d4e1a3ae19f3e2 ;}
+
+# }}}
 
 
 #-------- Universal Package Manager {{{
@@ -289,12 +319,12 @@ soprip() {
 # https://wiki.archlinux.org/index.php/Pacman_Rosetta
 # http://old-en.opensuse.org/Software_Management_Command_Line_Comparison
 # https://bbs.archlinux.org/viewtopic.php?pid=1281605#p1281605
-# Arch			-- pacman, yaourt
-# Debian/Ubuntu		-- apt-get(apt), aptitude, dpkg
-# Gentoo		-- eclean, emerge, equery, layman
-# OpenSuse		-- zypper
-# Red Hat/Fedora	-- package-cleanup, rpm, yum
-# Suse			-- rug
+# Arch          -- pacman, yaourt
+# Debian/Ubuntu     -- apt-get(apt), aptitude, dpkg
+# Gentoo        -- eclean, emerge, equery, layman
+# OpenSuse      -- zypper
+# Red Hat/Fedora    -- package-cleanup, rpm, yum
+# Suse          -- rug
 # Not finish, only tested on Debian, Arch, Fedora so far
 
 # cleanold; removes certain packages that can no longer be downloaded
@@ -315,8 +345,8 @@ soprip() {
 # yum: autoclean, purge
 # }}}
 
-find_pkm() { for i;do which "$i" >/dev/null && { echo "$i"; return 0;};done;return 1; }
-export PKMGR=$(find_pkm yaourt pacman pacaur aptitude apt-get yum zypper emerge)
+#find_pkm() { for i;do which "$i" >/dev/null && { echo "$i"; return 0;};done;return 1; }
+#export PKMGR=$(find_pkm yaourt pacman pacaur aptitude apt-get yum zypper emerge)
 export PKMGR="yay"
 
 # {{{ apt-get
@@ -446,7 +476,7 @@ elif [ "$PKMGR" = "pacaur" ]; then
   pkm-remove-orphans() { pacaur -Rs $(pacman -Qqtd) ;}
   pkm-search() { pacaur -Qs "$@" && pacaur -s "$@" ;}
   pkm-search-local() { pacaur -Qs "$@" ;}
-  pkm-upgrade() { pacaur -Syu ;}	# upgrade everything except aur package
+  pkm-upgrade() { pacaur -Syu ;}    # upgrade everything except aur package
   pkm-upgrade-aur() { pacaur --noconfirm -Sbua ;} # only upgrade aur package
 # }}}
 # {{{ pacman
@@ -524,7 +554,8 @@ elif [ "$PKMGR" = "yay" ]; then
   pkm-remove-orphans() { yay -Rs $(pacman -Qqtd) ;}
   pkm-search() { yay --noconfirm "$@" ;}
   pkm-search-local() { yay -Qs "$@" ;}
-  pkm-upgrade() { yay -Syu --devel ;}	# upgrade everything except aur package
+  pkm-upgrade() { yay -Syu --devel ;}   # upgrade everything except aur package
+  pkm-listfiles() { yay -Ql "$@"; }
 # }}}
 # {{{ yum
 elif [ "$PKMGR" = "yum" ]; then
@@ -570,8 +601,35 @@ usermount-usb() { udisksctl unmount -b "$1" ;}
 
 # aspell
 spellchk-tex-pt() { for i in "$@"; do aspell -t --lang=pt_PT -c "$i";done; }
+spellchk-plain-pt() { for i in "$@"; do aspell --lang=pt_PT -c "$i";done; }
 
-beep() { play -qn synth sin G4 trim 0 1; }
+beep() { play -qn synth sin G5 trim 0 1; }
+
+# beeps after n minutes
+timer-silent() {
+    seconds=$1
+    let "seconds*=60"
+    sleep $seconds ;
+    notify-send timer
+}
+timer-loud() {
+    seconds=$1
+    let "seconds*=60"
+    sleep $seconds ;
+    notify-send timer;
+    beep;
+}
+timer-loop-silent() {  
+    seconds=$1
+    let "seconds*=60"
+    watch -n $seconds "\
+    notify-send loop timer \
+";}
+
+
+# for 
+#https://stackoverflow.com/questions/26109837/convert-flac-to-mp3-with-ffmpeg-keeping-all-metadata#26109838
+
 
 # " vim:foldmethod=marker:foldlevel=0:filetype=sh
 

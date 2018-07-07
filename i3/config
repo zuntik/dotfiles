@@ -10,12 +10,12 @@
 set $mod Mod4
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id [ -f /usr/bin/xcwd ] && (xterm -e "cd '`xcwd`' && /bin/zsh") || xterm ;
-#bindsym $mod+Return exec --no-startup-id st
+ bindsym $mod+Return exec --no-startup-id [ -f /usr/bin/xcwd ] && (xterm -e "cd '`xcwd`' && /bin/zsh") || xterm ;
+#bindsym $mod+Return exec --no-startup-id [ -f /usr/bin/xcwd ] && (termite -d "`xcwd`" & ) || termite ;
+#bindsym $mod+Return exec --no-startup-id xterm
 
 # kill focused window
 bindsym $mod+Shift+q kill
-bindsym Alt_L+F4 kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id rofi -show
@@ -275,9 +275,9 @@ for_window [title="pinentry"] move position center
 for_window [title="Opening"] move position center
 for_window [title="Figure"] floating enable
 for_window [title="Popcorn-Time"] border pixel $bordersize
-for_window [class="XTerm" title="ncmpcpp"] floating enable
-for_window [class="XTerm" title="ncmpcpp"] resize set 700 600
-for_window [class="XTerm" title="ncmpcpp"] move position center
+for_window [title="floaty"] floating enable
+for_window [title="floaty"] resize set 700 600
+for_window [title="floaty"] move position center
 
 # open specific applications on specific workspaces
 # example
@@ -387,14 +387,13 @@ exec --no-startup-id dunst
 # {{{
 
 # Media player controls
-#bindsym XF86AudioPlay exec playerctl play
+bindsym $mod+XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioPlay exec --no-startup-id mpc toggle -h ~/.local/share/mpd/socket
-#bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioPause exec --no-startup-id mpc pause -h ~/.local/share/mpd/socket
-#bindsym XF86AudioNext exec playerctl next
+bindsym $mod+XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioNext exec --no-startup-id mpc next -h ~/.local/share/mpd/socket
-#bindsym XF86AudioPrev exec playerctl previous
+bindsym $mod+XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym XF86AudioPrev exec --no-startup-id mpc prev -h ~/.local/share/mpd/socket
+bindsym $mod+XF86Stop exec --no-startup-id playerctl stop
 bindsym XF86AudioStop exec --no-startup-id mpc stop -h ~/.local/share/mpd/socket
 
 bindsym $mod+Shift+f exec firefox
@@ -409,11 +408,13 @@ bindsym XF86ScreenSaver exec --no-startup-id ~/.config/i3/lock-script.sh
 bindsym Pause exec --no-startup-id ~/.config/i3/lock-script.sh
 # bindsym Control_L+Alt_L+l exec --no-startup-id ~/.config/i3/lock-script.sh
 bindsym $mod+Shift+b exec --no-startup-id ~/.config/i3/lock-script.sh
-bindsym $Ctrl+Alt+l exec --no-startup-id ~/.config/i3/lock-script.sh
 bindsym XF86TouchpadToggle exec --no-startup-id ~/.config/i3/toggletouchpad.sh
 bindsym $mod+Shift+n exec zim
-bindsym $mod+m exec --no-startup-id "xterm -e ncmpcpp"
+bindsym $mod+m exec --no-startup-id "xterm -T floaty -e ncmpcpp"
 bindsym $mod+p exec --no-startup-id rofi-pass
+
+bindsym $mod+Shift+o exec --no-startup-id keyboardswitcher
+bindsym $mod+F3 exec --no-startup-id feh ~/Pictures/900px-KB_Germany.svg.png 
 
 # }}}
 

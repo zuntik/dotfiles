@@ -206,8 +206,6 @@ endtry
 " vim-gitgutter
 call SetupCommandAlias("GGS","GitGutterSignsEnable")
 
-" lightline
-
 " conquegdb
 let g:ConqueTerm_StartMessages = 0
 
@@ -215,6 +213,7 @@ call SetupCommandAlias("CVS","ConqueGdbVSplit")
 
 set background=dark
 
+" lightline
 " set lightline to include git-branch
 let g:lightline = {
       \ 'colorscheme': 'solarized',
