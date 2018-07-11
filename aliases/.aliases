@@ -14,7 +14,7 @@ alias webpd='wget -np -N -E -k -p -r -l5'
 alias xo='xdg-open'
 alias check_network='nmap -sn 192.168.1.0/24'
 alias check_all_ports='sudo nmap -n -PN -sT -sU -p-'
-alias fixpermitions='chmod -x+X -R'
+#alias fixpermitions='chmod -x+X -R'
 alias matlab='matlab -nodisplay -nosplash'
 alias pixelcolour='grabc'
 alias start='sudo systemctl restart'
@@ -34,6 +34,24 @@ alias allprocesses='ps axjf'
 #alias smpv='mpv --cache=2048 --ontop --no-border --force-window --autofit=500x280 --geometry=-15-50'
 alias smpv='mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-50'
 alias memcheck='valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all --track-origins=yes'
+
+
+# This function takes only 1 argument: either a file or a directory, and fixes
+# it's permitions
+fixpermitions () {
+    if [ -d "$1" ]
+    then
+        chmod 755 "$1";
+        cd $1 ;
+        while read -r i ; do
+            if [ -z $i  ] ; then  break; fi
+            fixpermitions "$i"
+        done <<< $(ls -A -1)
+        cd ..;
+    else
+        chmod 644 "$1";
+    fi
+}
 
 # Hilights a word without filtering
 hl () { grep -E "^|$1" --color='always' ;}
