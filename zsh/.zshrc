@@ -169,6 +169,7 @@ source ~/.prompt.zsh
 # Source aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
 [[ -f ~/.aliases2 ]] && source ~/.aliases2
+[[ -f ~/.exports ]] && source ~/.exports
 
 # Add bin to path
 path+=($HOME'/bin')

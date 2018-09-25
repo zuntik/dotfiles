@@ -14,7 +14,7 @@ rofi.lines:                          7
 ! "Number of columns"
 rofi.columns:                        1
 ! "Font to use"
-rofi.font:                           mono 12
+rofi.font:                           mono 18
 ! "Border width"
 rofi.bw:                             0
 ! "Location on screen"

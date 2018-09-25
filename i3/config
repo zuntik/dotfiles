@@ -10,7 +10,7 @@
 set $mod Mod4
 
 # start a terminal
- bindsym $mod+Return exec --no-startup-id [ -f /usr/bin/xcwd ] && (xterm -e "cd '`xcwd`' && /bin/zsh") || xterm ;
+bindsym $mod+Return exec --no-startup-id [ -f /usr/bin/xcwd ] && (xterm -e "cd '`xcwd`' && /bin/zsh" &) || (xterm &);
 #bindsym $mod+Return exec --no-startup-id [ -f /usr/bin/xcwd ] && (termite -d "`xcwd`" & ) || termite ;
 #bindsym $mod+Return exec --no-startup-id xterm
 
@@ -262,11 +262,11 @@ for_window [class="skype"] floating enable
 for_window [class="(?i)virtualbox"] floating enable
 for_window [class="Gelemental"] floating enable
 for_window [class="Zim"] floating enable
-for_window [class="Zim"] resize set 640 480
+for_window [class="Zim"] resize set 884 532
 for_window [class="Zim"] move position center
 for_window [title="Open File"] resize set 640 480
 for_window [title="Open File"] move position center
-for_window [title="Save"] resize set 640 480
+for_window [title="Save"] resize set 884 532
 for_window [title="Preferences"] move position center
 for_window [title="Preferences"] resize set 640 480
 for_window [title="Save"] move position center
@@ -276,7 +276,7 @@ for_window [title="Opening"] move position center
 for_window [title="Figure"] floating enable
 for_window [title="Popcorn-Time"] border pixel $bordersize
 for_window [title="floaty"] floating enable
-for_window [title="floaty"] resize set 700 600
+for_window [title="floaty"] resize set 884 532
 for_window [title="floaty"] move position center
 
 # open specific applications on specific workspaces
@@ -318,8 +318,8 @@ client.background       #002b36
 # finds out, if available)
 bar {
 
-    status_command i3status
-    #status_command i3blocks
+    #status_command i3status
+    status_command i3blocks
     tray_output             primary
     position                bottom
     strip_workspace_numbers yes
@@ -348,9 +348,17 @@ bar {
 # {{{
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% && pkill -RTMIN+10 i3blocks #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% && pkill -RTMIN+10 i3blocks #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && pkill -RTMIN+10 i3blocks # mute sound
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle # toggle mic
+                                                                             # the source value 
+                                                                             # is identified with
+                                                                             # pactl list sources
+
+#bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks 
+#bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
+#bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
 
 # Sreen brightness controls
 # bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
@@ -374,9 +382,13 @@ exec_always --no-startup-id synclient ClickFinger2=3
 #############################
 # {{{
 
-exec --no-startup-id feh --no-fehbg --bg-center ~/Pictures/wallpaper.jpg
+exec_always --no-startup-id feh --no-fehbg --bg-center ~/Pictures/wallpaper.jpg
 exec --no-startup-id compton
 exec --no-startup-id dunst
+
+set $mpdhost $HOME/.local/share/mpd/socket
+exec --no-startup-id while [ `mpc --host=$mpdhost` || `sleep 60`  ] ; do mpc --host=$mpdhost --wait current ; pkill -RTMIN+10 -x i3blocks; done
+ 
 
 # }}}
 
@@ -395,16 +407,14 @@ bindsym $mod+XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym XF86AudioPrev exec --no-startup-id mpc prev -h ~/.local/share/mpd/socket
 bindsym $mod+XF86Stop exec --no-startup-id playerctl stop
 bindsym XF86AudioStop exec --no-startup-id mpc stop -h ~/.local/share/mpd/socket
-
 bindsym $mod+Shift+f exec firefox
-bindsym $mod+Shift+t exec --no-startup-id st
+bindsym $mod+Shift+t exec --no-startup-id "xterm -T floaty"
 bindsym $mod+b exec --no-startup-id rambox
-bindsym $mod+Shift+Return exec [ -f /usr/bin/xcwd ] && thunar "`xcwd`" || thunar;
-#bindsym $mod+Shift+Return exec thunar;
+bindsym $mod+Shift+Return exec [ -f /usr/bin/xcwd ] && (thunar "`xcwd`" &) || (thunar &)
 bindsym XF86Calculator exec speedcrunch
 bindsym $mod+Shift+d exec --no-startup-id dropbox
-bindsym Print exec xfce4-screenshooter -r -s ~/Pictures/ScreenShots
 bindsym XF86ScreenSaver exec --no-startup-id ~/.config/i3/lock-script.sh
+bindsym XF86Display exec --no-startup-id ~/.config/i3/lock-script.sh
 bindsym Pause exec --no-startup-id ~/.config/i3/lock-script.sh
 # bindsym Control_L+Alt_L+l exec --no-startup-id ~/.config/i3/lock-script.sh
 bindsym $mod+Shift+b exec --no-startup-id ~/.config/i3/lock-script.sh
@@ -420,13 +430,28 @@ bindsym $mod+F3 exec --no-startup-id feh ~/Pictures/900px-KB_Germany.svg.png
 
 
 #############################
+####### Screenshots: ########
+#############################
+# {{{
+set $mode_screenshot Screenshot: (s) section, (f) full 
+bindsym Print mode "$mode_screenshot"
+mode "$mode_screenshot" {
+    bindsym f mode "default"; exec "sleep 0.2; scrot -e 'mkdir -p ~/Pictures/Screenshots ; mv $f ~/Pictures/Screenshots/'"
+    bindsym s mode "default"; exec "scrot -e 'mkdir -p ~/Pictures/Screenshots ; mv $f ~/Pictures/Screenshots/; pinta ~/Pictures/Screenshots/$f '"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+# }}}
+
+
+#############################
 ### settings for i3-gaps: ###
 #############################
 # {{{
 
 # Set inner/outer gaps
-# gaps inner 10
-# gaps outer -4
+gaps inner 10
+gaps outer -4
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
@@ -434,11 +459,11 @@ bindsym $mod+F3 exec --no-startup-id feh ~/Pictures/900px-KB_Germany.svg.png
 # gaps outer all plus 5
 
 # Smart gaps (gaps used if only more than one container on the workspace)
-# smart_gaps on
+smart_gaps on
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-# smart_borders on
+smart_borders on
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
 set $mode_gaps Gaps: (o) outer, (i) inner

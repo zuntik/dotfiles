@@ -85,7 +85,11 @@ unset answer
 echo -n "Do you wish to initialize other daemons like mpd? [Y/n] "
 read answer
 if [ "$answer" == "Y" -o "$answer" == "y" -o -z "$answer" ] ; then
-    systemctl enable --user mpd
+    if [ -x /usr/bin/mpd ] ; then
+        systemctl enable --user mpd
+    else
+        echo "Waring: mpd not enabled because it isn't installed"
+    fi
     [[ -a $HOME/.config/systemd/ ]] && mv $HOME/.config/systemd/ $HOME/dotfiles/$BACKUPFOLDER
     cd systemd/user/
     for FILE in *

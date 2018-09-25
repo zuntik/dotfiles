@@ -31,10 +31,15 @@ alias diskspace='df -h'
 alias filespace='du -sch'
 alias rg='ranger --choosedir=$HOME/.local/share/rangerdir;cd "$(cat $HOME/.local/share/rangerdir)"'
 alias allprocesses='ps axjf'
-#alias smpv='mpv --cache=2048 --ontop --no-border --force-window --autofit=500x280 --geometry=-15-50'
-alias smpv='mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-50'
 alias memcheck='valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all --track-origins=yes'
 
+
+expand_cur_dir () { echo $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd ) }
+
+smpv () {
+    #mpv --cache=2048 --ontop --no-border --force-window --autofit=500x280 --geometry=-15-50
+    mpv --ontop --force-window --autofit=625x350 --geometry=-15-50 "$@"
+}
 
 # This function takes only 1 argument: either a file or a directory, and fixes
 # it's permitions
@@ -144,6 +149,7 @@ tsm-quit() { killall transmission-daemon ;}
 tsm-altspeedenable() { transmission-remote --alt-speed ;}   # limit bandwidth
 tsm-altspeeddisable() { transmission-remote --no-alt-speed ;}   # dont limit bandwidth
 tsm-add() { transmission-remote --add "$1" ;}
+tsm-add-here () { transmission-remote -w $(expand_cur_dir) --add "$1" }
 tsm-askmorepeers() { transmission-remote -t"$1" --reannounce ;}
 tsm-pause() { transmission-remote -t"$1" --stop ;}      # <id> or all
 tsm-start() { transmission-remote -t"$1" --start ;}     # <id> or all
@@ -620,6 +626,8 @@ usermount-usb() { udisksctl unmount -b "$1" ;}
 # aspell
 spellchk-tex-pt() { for i in "$@"; do aspell -t --lang=pt_PT -c "$i";done; }
 spellchk-plain-pt() { for i in "$@"; do aspell --lang=pt_PT -c "$i";done; }
+spellchk-plain-de() { for i in "$@"; do aspell --lang=de_DE -c "$i";done; }
+
 
 beep() { play -qn synth sin G5 trim 0 1; }
 
@@ -645,9 +653,19 @@ timer-loop-silent() {
 ";}
 
 
+markdownview() {
+    pandoc $1 | lynx -stdin
+}
+
+
+tv-skynews() {
+    smpv https://youtu.be/XOacA3RYrXk 
+}
+
 # for 
 #https://stackoverflow.com/questions/26109837/convert-flac-to-mp3-with-ffmpeg-keeping-all-metadata#26109838
 
 
 # " vim:foldmethod=marker:foldlevel=0:filetype=sh
+
 

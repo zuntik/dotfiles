@@ -16,7 +16,7 @@ general {
 
 # order += "wireless wls1"
 order += "mpd"
-order += "wireless wlp3s0"
+order += "wireless wlp58s0"
 order += "ethernet enp0s25"
 order += "battery 0"
 order += "volume master"
@@ -37,7 +37,7 @@ ethernet enp0s3 {
 }
 
 #wireless wls1 {
-wireless wlp3s0 {
+wireless wlp58s0 {
 	#format_up = "%essid - %ip"
 	format_up = " %essid"
 	format_down = " Internet Down"
