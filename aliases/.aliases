@@ -662,6 +662,10 @@ tv-skynews() {
     smpv https://youtu.be/XOacA3RYrXk 
 }
 
+activate-anaconda() {
+    source /opt/anaconda/bin/activate
+}
+
 # for 
 #https://stackoverflow.com/questions/26109837/convert-flac-to-mp3-with-ffmpeg-keeping-all-metadata#26109838
 

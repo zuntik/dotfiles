@@ -103,6 +103,10 @@ if has('persistent_undo')
     set undofile
 endif
 
+" turn off bell sounds
+set visualbell
+set t_vb=
+
 " show command in bottom bar
 " set showcmd
 
@@ -166,7 +170,7 @@ Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-eunuch'	
 
 " http://vimawesome.com/plugin/vim-latex-live-preview
- "Plug 'xuhdev/vim-latex-live-preview'
+Plug 'xuhdev/vim-latex-live-preview'
 
 " https://vimawesome.com/plugin/fugitive-vim
 Plug 'tpope/vim-fugitive'
@@ -191,6 +195,9 @@ Plug 'altercation/vim-colors-solarized'
 
 " https://vimawesome.com/plugin/matlabfilesedition
 Plug 'vim-scripts/MatlabFilesEdition'
+
+" https://github.com/vim-scripts/jpythonfold.vim
+Plug 'vim-scripts/jpythonfold.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -238,7 +245,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:tex_flavor = "latex"
 
 " vim-latex-live-preview
-let g:livepreview_previewer = 'zathura'
+let g:livepreview_previewer = 'mupdf'
 
 " Git gutter
 " let g:gitgutter_enabled = 0

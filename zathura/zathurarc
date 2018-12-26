@@ -1,0 +1,6 @@
+
+map t toggle_statusbar
+map <S-Down> navigate next
+map <S-Up> navigate previous
+
+set guioptions ''
