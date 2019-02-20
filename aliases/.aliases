@@ -5,7 +5,7 @@ alias octave='octave-cli'
 alias svim='sudo vim'
 alias push='pushd .'
 alias pop='popd'
-alias cleanpackages='sudo pacman -Rns $(pacman -Qtdq)'
+alias clean-packages='sudo pacman -Rns $(pacman -Qtdq)'
 alias pwd_end_bit="pwd | sed 's#.*/##'"
 alias pwd_from_within='echo $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )'
 alias fcrm='\rm -rf'
@@ -665,6 +665,34 @@ tv-skynews() {
 activate-anaconda() {
     source /opt/anaconda/bin/activate
 }
+
+# cleaning aliases
+clean-latex() {
+    touch .dummy .dummy2
+    ls $( ls -1 | grep '.aux\|.out\|.log') .dummy .dummy2
+    \rm -I $( ls | grep '.aux\|.out\|.log') .dummy .dummy2 
+}
+
+sans() {
+    echo "
+░░░░░▄▄▀▀▀▀▀▀▀▀▀▄▄░░░░░
+░░░░█░░░░░░░░░░░░░█░░░░
+░░░█░░░░░░░░░░▄▄▄░░█░░░
+░░░█░░▄▄▄░░▄░░███░░█░░░
+░░░▄█░▄░░░▀▀▀░░░▄░█▄░░░
+░░░█░░▀█▀█▀█▀█▀█▀░░█░░░
+░░░▄██▄▄▀▀▀▀▀▀▀▄▄██▄░░░
+░▄█░█▀▀█▀▀▀█▀▀▀█▀▀█░█▄░
+▄▀░▄▄▀▄▄▀▀▀▄▀▀▀▄▄▀▄▄░▀▄
+█░░░░▀▄░█▄░░░▄█░▄▀░░░░█
+░▀▄▄░█░░█▄▄▄▄▄█░░█░▄▄▀░
+░░░▀██▄▄███████▄▄██▀░░░
+░░░████████▀████████░░░
+░░▄▄█▀▀▀▀█░░░█▀▀▀▀█▄▄░░
+░░▀▄▄▄▄▄▀▀░░░▀▀▄▄▄▄▄▀░░
+    "
+}
+
 
 # for 
 #https://stackoverflow.com/questions/26109837/convert-flac-to-mp3-with-ffmpeg-keeping-all-metadata#26109838
