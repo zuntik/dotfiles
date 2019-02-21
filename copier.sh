@@ -87,6 +87,7 @@ read answer
 if [ "$answer" == "Y" -o "$answer" == "y" -o -z "$answer" ] ; then
     if [ -x /usr/bin/mpd ] ; then
         systemctl enable --user mpd
+        $HOME/dotfiles/mpd/initializer.sh
     else
         echo "Waring: mpd not enabled because it isn't installed"
     fi
