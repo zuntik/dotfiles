@@ -382,7 +382,7 @@ exec_always --no-startup-id synclient ClickFinger2=3
 # {{{
 
 exec_always --no-startup-id feh --no-fehbg --bg-fill ~/Pictures/wallpaper.jpg
-exec --no-startup-id compton --config ~/.compton.conf
+exec --no-startup-id compton # --config ~/.compton.conf
 exec --no-startup-id dunst
 
 #set $mpdhost $HOME/.local/share/mpd/socket
