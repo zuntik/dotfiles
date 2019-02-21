@@ -1,12 +1,3 @@
-
-if [ -f $HOME/.Xresources ]; then
-    xrdb -merge $HOME/.Xresources
-fi
-
-if [ -f $HOME/.Xmodmap ]; then
-    xmodmap $HOME/.Xmodmap
-fi
-
 if [ -f $HOME/.xprofile ]; then
     source $HOME/.xprofile 
 fi
@@ -24,5 +15,5 @@ case $session in
     *                 ) exec $1;;
 esac
 
-
 # vim: filetype=sh
+
