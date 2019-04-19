@@ -32,13 +32,14 @@ alias filespace='du -sch'
 alias rg='ranger --choosedir=$HOME/.local/share/rangerdir;cd "$(cat $HOME/.local/share/rangerdir)"'
 alias allprocesses='ps axjf'
 alias memcheck='valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all --track-origins=yes'
+alias netrestart='sudo systemctl restart NetworkManager'
 
 
-expand_cur_dir () { echo $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd ) }
+expand_cur_dir () { echo $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd ) ;}
 
 smpv () {
     #mpv --cache=2048 --ontop --no-border --force-window --autofit=500x280 --geometry=-15-50
-    mpv --ontop --force-window --autofit=625x350 --geometry=-15-50 "$@"
+    mpv --ontop --force-window --autofit=625x350 --geometry=-15-50 "$@";
 }
 
 # This function takes only 1 argument: either a file or a directory, and fixes
@@ -71,11 +72,11 @@ function spec ()
     local HASH=$(echo $STRING | head -n1 | awk '{print $1;}');
     case $HASH in
         2e11ce400c7286cd8a45a235dfeb28678a3e944f)
-            alias go='gio open' 
-            alias rm='gio trash'
+            alias go='gio open' ;
+            alias rm='gio trash';
     esac
 }
-spec   # And now we run the function
+spec;   # And now we run the function
 #}}}
 
 # extract - archive extractor 
@@ -87,22 +88,30 @@ function ex ()
     case $1 in
       *.tar)        tar -xf $1                  ;;
       *.tar.xz)     tar -xJf $1                 ;;
-      *.txz)        tar -xJf $1                     ;;
+      *.txz)        tar -xJf $1                 ;;
       *.tar.bz2)    tar -xjf $1                 ;;
       *.tbz2)       tar -xjf $1                 ;;
       *.tar.gz)     tar -xzf $1                 ;;
       *.tgz)        tar -xzf $1                 ;;
-      *.tar.pixz)   tar -Ipixz -xf $1               ;;
-      *.tpxz)       tar -Ipixz -xf $1               ;;
-      *.xz)     xz -d $1                    ;;
+      *.tar.pixz)   tar -Ipixz -xf $1           ;;
+      *.tpxz)       tar -Ipixz -xf $1           ;;
+      *.xz)         xz -d $1                    ;;
       *.pixz)       pixz -d $1                  ;;
-      *.gz)     gunzip $1                   ;;
+      *.gz)         gunzip $1                   ;;
       *.bz2)        bunzip2 $1                  ;;
       *.rar)        unrar x $1                  ;;
-      *.zip)        unzip $1 -d $( echo  $1 | sed 's/.zip//' )  ;;
-      *.Z)      uncompress $1               ;;
-      *.7z)     7z x $1                 ;;
-      *)        echo "'$1' cannot be extracted via ex"  ;;
+      *.zip)        unzip $1 -d $(echo  $1 | sed 's/.zip//')  ;;
+      *.Z)          uncompress $1               ;;
+      *.7z)         7z x $1                     ;;
+      *.jar)        
+          dirname=$(echo  $1 | sed 's/.jar//');
+          mkdir $dirname ;
+          cp $1 $dirname ;
+          cd $dirname ;
+          jar xf $1 ;
+          rm $1 ;
+          cd ..                                 ;;
+      *)            echo "'$1' cannot be extracted via ex"  ;;
     esac
   else
     echo "'$1' is not a valid file"
@@ -116,7 +125,7 @@ function ex ()
 function zipdir()
 {
     if [ -d $1 ] ; then
-    zip
+    zip;
     fi
 }
 # }}}
@@ -639,8 +648,8 @@ timer-silent() {
     notify-send timer
 }
 timer-loud() {
-    seconds=$1
-    let "seconds*=60"
+    seconds=$1;
+    let "seconds*=60";
     sleep $seconds ;
     notify-send timer;
     beep;
@@ -654,23 +663,23 @@ timer-loop-silent() {
 
 
 markdownview() {
-    pandoc $1 | lynx -stdin
+    pandoc $1 | lynx -stdin ;
 }
 
 
 tv-skynews() {
-    smpv https://youtu.be/XOacA3RYrXk 
+    smpv https://youtu.be/XOacA3RYrXk ; 
 }
 
 activate-anaconda() {
-    source /opt/anaconda/bin/activate
+    source /opt/anaconda/bin/activate ;
 }
 
 # cleaning aliases
 clean-latex() {
-    touch .dummy .dummy2
-    ls $( ls -1 | grep '.aux\|.out\|.log') .dummy .dummy2
-    \rm -I $( ls | grep '.aux\|.out\|.log') .dummy .dummy2 
+    touch .dummy .dummy2;
+    ls $( ls -1 | grep '.aux\|.out\|.log') .dummy .dummy2;
+    \rm -I $( ls | grep '.aux\|.out\|.log') .dummy .dummy2 ;
 }
 
 sans() {
@@ -690,7 +699,7 @@ sans() {
 ░░░████████▀████████░░░
 ░░▄▄█▀▀▀▀█░░░█▀▀▀▀█▄▄░░
 ░░▀▄▄▄▄▄▀▀░░░▀▀▄▄▄▄▄▀░░
-    "
+    ";
 }
 
 

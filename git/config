@@ -12,15 +12,15 @@
     excludesfile = ~/.config/git/gitignore
     hooksPath = ~/.config/git/hooks/
 [color]
-    diff = auto
-    ui = auto
-    branch = auto
-    status = auto
-    decorate = auto
-    showbranch = auto
+    diff = true
+    ui = true
+    branch = true
+    status = true
+    decorate = true
+    showbranch = true
     pager = true
-    grep = auto
-    interactive = auto
+    grep = true
+    interactive = true
 [credential]
     helper = cache --timeout=3600
 [push]
