@@ -15,7 +15,8 @@ fi
 #convert "$image" -filter Gaussian -resize "250.00" -define "filter:sigma=.6" -resize "1366x768^" -gravity center -extent "1366x768^" "$image"
 #convert "$image" -filter Gaussian -resize "175.00" -define "filter:sigma=.6" -resize "1366x768^" -gravity center -extent "1366x768^" "$image"
 if [ -x /usr/bin/convert ]; then
-    convert "$image" -filter Gaussian -resize "300.00" -define "filter:sigma=.9" -resize "1920x1080^" -gravity center -extent "1920x1080^" "$image"
+    #convert "$image" -filter Gaussian -resize "300.00" -define "filter:sigma=.9" -resize "1920x1080^" -gravity center -extent "1920x1080^" "$image"
+    convert "$image" -filter Gaussian -resize "300.00" -define "filter:sigma=1.5" -resize "1920x1080^" -gravity center -extent "1920x1080^" "$image"
 fi
 # lock the screen
 if [ -x /usr/bin/physlock ]; then
