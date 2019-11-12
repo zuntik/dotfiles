@@ -318,7 +318,8 @@ client.background       #002b36
 bar {
 
     #status_command i3status
-    status_command i3blocks
+    #status_command i3blocks
+    status_command SCRIPT_DIR=~/.config/i3blocks/blocks i3blocks
     tray_output             primary
     position                bottom
     strip_workspace_numbers yes
@@ -347,9 +348,9 @@ bar {
 # {{{
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% && pkill -RTMIN+10 i3blocks #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% && pkill -RTMIN+10 i3blocks #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && pkill -RTMIN+10 i3blocks # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% && pkill -RTMIN+1 i3blocks #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% && pkill -RTMIN+1 i3blocks #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && pkill -RTMIN+1 i3blocks # mute sound
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle # toggle mic
                                                                              # the source value 
                                                                              # is identified with
@@ -384,6 +385,9 @@ exec_always --no-startup-id synclient ClickFinger2=3
 exec_always --no-startup-id feh --no-fehbg --bg-fill ~/Pictures/wallpaper.jpg
 exec --no-startup-id compton # --config ~/.compton.conf
 exec --no-startup-id dunst
+exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
+exec --no-startup-id pasystray
 
 #set $mpdhost $HOME/.local/share/mpd/socket
 #exec_always --no-startup-id while [ `mpc --host=$mpdhost`  ] ; do mpc --host=$mpdhost --wait current ; pkill -RTMIN+10 -x i3blocks; done
