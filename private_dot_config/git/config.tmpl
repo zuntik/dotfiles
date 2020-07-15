@@ -1,0 +1,30 @@
+[user]
+	email = {{ .email }}
+	name = {{ .name }}
+[advice]
+    statusHints = false
+    commitBeforeMerge = false
+    detachedHead = false
+    implicitIdentity = false
+    pushNonFastForward = false
+    resolveConflict = false
+    pushUpdateRejected = false
+    rmHints = false
+    amWorkDir = false
+    statusUoption = false
+    pushNeedsForce = false
+    pushFetchFirst = false
+    pushAlreadyExists = false
+    pushNonFFCurrent = false
+[alias]
+    fancylog = log --oneline --decorate --graph --all
+    sstatus = status --short
+    unstage = reset HEAD --
+    visual = !gitk --all
+    copystage = checkout-index -f
+    branchcommit = checkout -b
+    lsalias = config --get-regexp alias
+    detailremote = remote show
+    submodulesud = submodule foreach git pull origin master
+[pull]
+	rebase = false
