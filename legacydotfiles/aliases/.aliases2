@@ -1,7 +1,0 @@
-alias ist='cd ~/Dropbox/Faculdade'
-alias mountsigma='sshfs ist425489@sigma.tecnico.ulisboa.pt:/afs/.ist.utl.pt/users/8/9/ist425489 ~/Documents/tecnicosigma -C'
-alias umountsigma='fusermount -u ~/Documents/tecnicosigma'
-alias activate-neuralnet='source ~/Documents/neuralnetworks_env/bin/activate'
-
-
-# " vim:foldmethod=marker:foldlevel=0:filetype=sh
