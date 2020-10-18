@@ -22,7 +22,7 @@ export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wgetrc"
 
 # other stuff
 export MPD_HOST=~/.local/share/mpd/socket
-export PASSWORD_STORE_GENERATED_LENGTH=14
+export PASSWORD_STORE_GENERATED_LENGTH=20
 
 
 # use vimpager when available for manpages
