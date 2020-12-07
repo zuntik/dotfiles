@@ -227,3 +227,4 @@ sans() {
 
 # " vim:foldmethod=marker:foldlevel=0:filetype=sh
 
+alias sshprox='ssh -N -D 9090 tberry.duckdns.org'

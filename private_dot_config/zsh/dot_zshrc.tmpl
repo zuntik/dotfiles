@@ -6,7 +6,7 @@ unsetopt beep
 bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/thomas/.config/zsh/.zshrc'
+zstyle :compinstall filename '{{ .chezmoi.homedir }}/.config/zsh/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -14,4 +14,8 @@ compinit
 
 #PROMPT='%(?.%F{green}√.%F{red}?%?)%f %B%F{240}%1~%f%b %# '
 
+[[ -f ${XDG_DATA_HOME:-$HOME/.local/share}/aliases/aliases ]] && source ${XDG_DATA_HOME:-$HOME/.local/share}/aliases/aliases
+
+
 source $ZDOTDIR/.zsh_plugins.sh
+

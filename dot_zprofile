@@ -19,6 +19,9 @@ export SSB_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zoom"
 export KDEHOME="${XDG_CONFIG_HOME:-$HOME/.config}/kde"
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc"
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wgetrc"
+export VSCODE_PORTABLE="${XDG_DATA_HOME:-$HOME/.local/share}/vscode-oss"
+export MYSQL_HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/mysql_history"
+
 
 # other stuff
 export MPD_HOST=~/.local/share/mpd/socket
