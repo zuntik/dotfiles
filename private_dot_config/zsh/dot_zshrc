@@ -6,7 +6,7 @@ unsetopt beep
 bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '{{ .chezmoi.homedir }}/.config/zsh/.zshrc'
+zstyle :compinstall filename '/home/thomas/.config/zsh/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -20,3 +20,6 @@ path+=$HOME/'bin'
 
 source $ZDOTDIR/.zsh_plugins.sh
 
+export PATH="$PATH:$HOME/.local/bin"
+
+# vim filetype=zsh

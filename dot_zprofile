@@ -1,5 +1,5 @@
 # Default programs
-export EDITOR="nvim"
+export EDITOR="nvim-qt"
 
 # ~/ Clean-up:
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -17,16 +17,27 @@ export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/pass"
 export SSB_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zoom"
 export KDEHOME="${XDG_CONFIG_HOME:-$HOME/.config}/kde"
-export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc"
+#export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc"
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wgetrc"
 export VSCODE_PORTABLE="${XDG_DATA_HOME:-$HOME/.local/share}/vscode-oss"
 export MYSQL_HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/mysql_history"
-
+export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc"
+export NVM_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/nvm"
+export OCTAVE_HISTFILE="${XDG_CACHE:-$HOME/.cache}/octave_hist"
+export OCTAVE_SITE_INITFILE="${XDG_CONFIG_HOME:-$HOME/.config}/octave/octaverc"
+export MPLAYER_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/mplayer"
+export TEXMFHOME="${XDG_DATA_HOME:-$HOME/.local/share}texmf"
+export TEXMFVAR="${XDG_CACHE:-$HOME/.cache}/texlive/texmf-var"
+export TEXMFCONFIG="${XDG_CONFIG_HOME:-$HOME/.config}texlive/texmf-config"
+export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 
 # other stuff
 export MPD_HOST=~/.local/share/mpd/socket
 export PASSWORD_STORE_GENERATED_LENGTH=20
-
+export PASSWORD_STORE_ENABLE_EXTENSIONS="true"
+export PASSWORD_STORE_EXTENSIONS_DIR=$PASSWORD_STORE_DIR/.extensions
 
 # use vimpager when available for manpages
 [ -f /usr/bin/vimpager ] && export MANPAGER=vimpager
+
+# vim: filetype=zsh

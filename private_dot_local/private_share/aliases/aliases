@@ -16,6 +16,16 @@ alias filespace='du -sch'
 alias rg='ranger --choosedir=$HOME/.local/share/rangerdir;cd "$(cat $HOME/.local/share/rangerdir)"'
 alias allprocesses='ps axjf'
 alias memcheck='valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all --track-origins=yes'
+alias vim='nvim-qt'
+source_ros () {
+  if [ -n "$ZSH_VERSION" ]; then
+    source /opt/ros/noetic/setup.zsh 
+  elif [ -n "$BASH_VERSION" ]; then 
+    source /opt/ros/noetic/setup.bash
+  else
+    source /opt/ros/noetic/setup.sh
+  fi
+}
 
 expand_cur_dir () { echo $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd ) ;}
 

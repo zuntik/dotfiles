@@ -10,6 +10,7 @@
 set $mod Mod4
 
 # start a terminal
+# install xcwd with xcwd-git package 
 bindsym $mod+Return exec --no-startup-id [ -f /usr/bin/xcwd ] && (xterm -e "cd '`xcwd`' && /bin/zsh" &) || (xterm &);
 #bindsym $mod+Return exec --no-startup-id [ -f /usr/bin/xcwd ] && (termite -d "`xcwd`" & ) || termite ;
 #bindsym $mod+Return exec --no-startup-id xterm
@@ -281,6 +282,8 @@ for_window [title="floaty"] move position center
 # open specific applications on specific workspaces
 # example
 # assign[class="Firefox"] $workspace2
+
+# gtk3-nocsd-git AUR packages to remove client side decorations
 
 # }}}
 

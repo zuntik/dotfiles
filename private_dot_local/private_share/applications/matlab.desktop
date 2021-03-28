@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Matlab
+Exec=env LD_PRELOAD=/usr/lib/libstdc++.so env LD_LIBRARY_PATH=/usr/lib/xorg/modules/dri/ matlab -desktop -r "opengl('save','hardware')"
+Terminal=false
+Categories=Education
+
