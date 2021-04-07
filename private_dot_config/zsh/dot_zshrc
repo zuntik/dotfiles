@@ -16,10 +16,30 @@ compinit
 
 [[ -f ${XDG_DATA_HOME:-$HOME/.local/share}/aliases/aliases ]] && source ${XDG_DATA_HOME:-$HOME/.local/share}/aliases/aliases
 
-path+=$HOME/'bin'
+path+=$HOME/'.local/bin'
 
-source $ZDOTDIR/.zsh_plugins.sh
+source $HOME/.zprofile
 
-export PATH="$PATH:$HOME/.local/bin"
+# source $ZDOTDIR/.zsh_plugins.sh
+source $ZPLUG_HOME/init.zsh
 
-# vim filetype=zsh
+zplug "plugins/git", from:oh-my-zsh
+zplug "plugins/pip", from:oh-my-zsh
+zplug "plugins/lein", from:oh-my-zsh
+zplug "plugins/command-not-found", from:oh-my-zsh
+zplug "lib/*", from:oh-my-zsh
+
+# romkatv/powerlevel10k
+  
+# https://callstack.com/blog/supercharge-your-terminal-with-zsh/
+zplug "zdharma/fast-syntax-highlighting", from:github
+zplug "zsh-users/zsh-completions", from:github
+#marzocchi/zsh-notify
+zplug "denysdovhan/spaceship-prompt", from:github, as:theme
+zplug "zsh-users/zsh-autosuggestions", from:github
+
+zplug "MichaelAquilina/zsh-auto-notify", from:github
+
+zplug load
+
+# vim: filetype=zsh

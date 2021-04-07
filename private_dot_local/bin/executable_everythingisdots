@@ -1,0 +1,95 @@
+#!/bin/bash
+# https://jmontoya.tech/everything-is-dots/
+# ./dotmagick.sh [input file]
+# A tmp directory will be generated with buildfiles
+# remove build files when modifying variables e.g.: rm -rf tmp && ./dotmagick.sh [input file]
+
+## Build Variables
+# Size of dot in pixels
+DOT_SIZE=4
+# Width of image in dots
+WIDTH=320
+# Height of image in dots
+HEIGHT=320
+
+WORKING_SCALE=4
+INPUT_FILE=$1
+BUILD_DIR="./tmp"
+DISPLACEMENT_VALUE=$((DOT_SIZE / 10))
+
+IMAGE_WIDTH=$((WIDTH * DOT_SIZE))
+IMAGE_HEIGHT=$((HEIGHT * DOT_SIZE))
+
+# Generate Build Files
+if [ ! -f $BUILD_DIR/masking_grid.png ]
+then
+  echo "Generating masking grid."
+
+  # Make Build Directory
+  mkdir -p $BUILD_DIR
+
+  echo "Creating Dot Grid"
+  convert -size $((IMAGE_WIDTH * WORKING_SCALE))x$((IMAGE_HEIGHT * WORKING_SCALE)) xc:white \
+    $BUILD_DIR/masking_grid.png
+  convert -size $((DOT_SIZE * WORKING_SCALE))x$((DOT_SIZE * WORKING_SCALE)) xc:white -strokewidth 1 -fill black \
+    -draw "circle $((DOT_SIZE * WORKING_SCALE / 2)),$((DOT_SIZE * WORKING_SCALE / 2)) $((DOT_SIZE * WORKING_SCALE / 2)),$((DOT_SIZE * WORKING_SCALE - DISPLACEMENT_VALUE))" -write mpr:dot +delete \
+    -size $((IMAGE_WIDTH * WORKING_SCALE))x$((IMAGE_HEIGHT * WORKING_SCALE)) tile:mpr:dot \
+    $BUILD_DIR/masking_grid.png
+
+  echo "Creating X Axis Displacement Map"
+  convert -size ${WIDTH}x${HEIGHT} xc:"gray(50%)" \
+    +noise Random -channel green -separate -posterize 3 -scale $((DOT_SIZE * 100 * WORKING_SCALE))% \
+    $BUILD_DIR/displacement_map_x.png
+
+  echo "Creating Y Axis Displacement Map"
+  convert -size ${WIDTH}x${HEIGHT} xc:"gray(50%)" \
+    +noise Random -channel red -separate -posterize 3 -scale $((DOT_SIZE * 100 * WORKING_SCALE))% \
+    $BUILD_DIR/displacement_map_y.png
+
+  echo "Displacing Dot Grid on X Axis"
+  composite $BUILD_DIR/displacement_map_x.png $BUILD_DIR/masking_grid.png \
+    -displace $((DISPLACEMENT_VALUE * WORKING_SCALE))x0 \
+    $BUILD_DIR/masking_grid.png
+
+  echo "Displacing Dot Grid on Y Axis"
+  composite $BUILD_DIR/displacement_map_y.png $BUILD_DIR/masking_grid.png \
+    -displace 0x$((DISPLACEMENT_VALUE * WORKING_SCALE)) \
+    $BUILD_DIR/masking_grid.png
+
+  echo "Creating Dot Mask"
+  convert $BUILD_DIR/masking_grid.png \
+    -fuzz 90% \
+    -transparent black \
+    $BUILD_DIR/masking_grid.png
+
+  echo "Creating Pin Banding Overlay"
+  PIN_COLORS="#282828 #252525 #292929 #101010 #656565 #181818 #191919 #404040"
+  STROKE_ARRAY=()
+  i=0
+  for PIN_COLOR in $PIN_COLORS;
+  do
+    STROKE_ARRAY[$i]="stroke '$PIN_COLOR' line 0,$(((DOT_SIZE * WORKING_SCALE * i) + (DOT_SIZE / 2 * WORKING_SCALE))) $((DOT_SIZE * WORKING_SCALE * 8 - 1)),$(((DOT_SIZE * WORKING_SCALE * i) + (DOT_SIZE / 2 * WORKING_SCALE)))"
+    i=$((i + 1))
+  done
+
+  convert -size $((DOT_SIZE * WORKING_SCALE * 8))x$((DOT_SIZE * WORKING_SCALE * 8)) xc:none -background none -fill none -strokewidth $((DOT_SIZE * $WORKING_SCALE)) \
+    -draw "${STROKE_ARRAY[*]}" -write mpr:grid +delete \
+    -size $((IMAGE_WIDTH * WORKING_SCALE))x$((IMAGE_HEIGHT * WORKING_SCALE)) tile:mpr:grid \
+    $BUILD_DIR/pin-banding-overlay.png
+fi
+
+convert $INPUT_FILE \
+  -resize $((WIDTH))x$((HEIGHT)) \
+  -normalize \
+  -monochrome \
+  -scale $((IMAGE_WIDTH * WORKING_SCALE))x$((IMAGE_HEIGHT * WORKING_SCALE)) \
+  out.png;
+
+composite $BUILD_DIR/masking_grid.png \
+  out.png \
+  out.png
+
+convert out.png \
+  -compose Lighten $BUILD_DIR/pin-banding-overlay.png \
+  -composite -resize $((IMAGE_WIDTH))x$((IMAGE_HEIGHT)) \
+  out.png

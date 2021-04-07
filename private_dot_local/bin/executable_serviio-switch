@@ -1,0 +1,17 @@
+#!/bin/bash
+
+sudo systemctl stop serviio
+echo "stopped serviio"
+
+if [ -d "/usr/share/java/serviio_private" ]; then
+    sudo mv /usr/share/java/serviio /usr/share/java/serviio_shared
+    sudo mv /usr/share/java/serviio_private /usr/share/java/serviio/
+    echo "the current on display is private"
+else
+    sudo mv /usr/share/java/serviio /usr/share/java/serviio_private
+    sudo mv /usr/share/java/serviio_shared /usr/share/java/serviio
+    echo "the current on display is public"
+fi
+
+#sudo mv /usr/share/java/serviio_alternate/ /usr/share/java/serviio/
+#sudo mv /usr/share/java/serviio_tmp /usr/share/java/serviio_alternate/

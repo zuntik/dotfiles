@@ -1,0 +1,17 @@
+#!/bin/bash
+
+ispt() {
+    echo $(setxkbmap -print | grep pc+pt | wc -l)
+}
+
+if [ $(ispt) == '1' ]
+then
+    notify-send "switched to de keyboard"
+    setxkbmap de
+else
+    notify-send "switched to pt keyboard"
+    setxkbmap pt
+fi
+
+setxkbmap -option caps:escape
+

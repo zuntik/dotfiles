@@ -1,0 +1,10 @@
+[Desktop Entry]
+Categories=Qt;KDE;Utility;
+Exec=kteatime
+GenericName=Tea Cooker
+Icon=kteatime
+Name=KTeaTime
+Terminal=false
+Type=Application
+X-DocPath=kteatime/index.html
+X-KDE-StartupNotify=true
