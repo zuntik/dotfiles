@@ -1,6 +1,9 @@
 [Added Associations]
 application/epub+zip=org.pwmt.zathura.desktop;com.github.johnfactotum.Foliate.desktop;
 video/mp4=mpv.desktop;
+x-scheme-handler/mailto=userapp-Thunderbird-06GX20.desktop;
+message/rfc822=userapp-Thunderbird-06GX20.desktop;
+video/x-ms-wmv=mpv.desktop;
 
 [Default Applications]
 application/epub+zip=org.pwmt.zathura.desktop;
@@ -26,10 +29,12 @@ x-scheme-handler/etcher=Electron.desktop
 x-scheme-handler/ferdi=ferdi.desktop
 x-scheme-handler/http=firefox.desktop;
 x-scheme-handler/https=firefox.desktop;
-x-scheme-handler/mailto=org.kde.kmail2.desktop;
+x-scheme-handler/mailto=userapp-Thunderbird-06GX20.desktop
 x-scheme-handler/msteams=teams.desktop
 x-scheme-handler/sgnl=signal-desktop.desktop
 x-scheme-handler/skype=skypeforlinux.desktop
 x-scheme-handler/tel=skypeforlinux.desktop
 x-scheme-handler/web+stellar=keybase.desktop
 x-scheme-handler/keybase=keybase.desktop
+message/rfc822=userapp-Thunderbird-06GX20.desktop
+x-scheme-handler/signalcaptcha=signal.desktop

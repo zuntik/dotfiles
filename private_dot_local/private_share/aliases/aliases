@@ -1,3 +1,5 @@
+alias image_metadata='identify -verbose'
+alias image_metadata_remove='mogrify -strip'
 alias pwd_end_bit="pwd | sed 's#.*/##'"
 alias pwd_from_within='echo $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )'
 # alias webpd='wget -k -p -r' 
@@ -17,11 +19,15 @@ alias ra='ranger --choosedir=$HOME/.local/share/rangerdir;cd "$(cat $HOME/.local
 alias allprocesses='ps axjf'
 alias memcheck='valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all --track-origins=yes'
 alias vim='nvim-qt'
+alias pakinstalled="pacman -Qet | awk '{print \$1}'" 
 source_ros () {
   if [ -n "$ZSH_VERSION" ]; then
     source /opt/ros/noetic/setup.zsh 
+	[[ -e $HOME/catkin_ws/devel/setup.zsh ]] && source $HOME/catkin_ws/devel/setup.zsh || echo "workspace ~/catkin_ws not found"
+  if [ - ]
   elif [ -n "$BASH_VERSION" ]; then 
     source /opt/ros/noetic/setup.bash
+	[[ -e $HOME/catkin_ws/devel/setup.bash ]] && source $HOME/catkin_ws/devel/setup.zsh || echo "workspace ~/catkin_ws not found"
   else
     source /opt/ros/noetic/setup.sh
   fi
@@ -199,9 +205,9 @@ markdownview() {
 }
 
 
-activate-anaconda() {
-    source /opt/anaconda/bin/activate ;
-}
+# activate-anaconda() {
+#     source /opt/anaconda/bin/activate ;
+# }
 
 # cleaning aliases
 clean-latex() {

@@ -2,7 +2,7 @@
 
 set -eux
 
-MPV_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"mpv
+MPV_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/mpv"
 
 # Shaders
 mkdir -p "$MPV_DIR/shaders"
