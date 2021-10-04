@@ -4,6 +4,8 @@ video/mp4=mpv.desktop;
 x-scheme-handler/mailto=userapp-Thunderbird-06GX20.desktop;
 message/rfc822=userapp-Thunderbird-06GX20.desktop;
 video/x-ms-wmv=mpv.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop;
+text/calendar=thunderbird.desktop;
 
 [Default Applications]
 application/epub+zip=org.pwmt.zathura.desktop;
@@ -36,5 +38,7 @@ x-scheme-handler/skype=skypeforlinux.desktop
 x-scheme-handler/tel=skypeforlinux.desktop
 x-scheme-handler/web+stellar=keybase.desktop
 x-scheme-handler/keybase=keybase.desktop
+x-scheme-handler/magnet=org.qbittorrent.qBittorrent.desktop;
 message/rfc822=userapp-Thunderbird-06GX20.desktop
 x-scheme-handler/signalcaptcha=signal.desktop
+x-scheme-handler/postman=Postman.desktop

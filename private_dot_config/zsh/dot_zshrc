@@ -55,6 +55,13 @@ zplug load
 [ -f $HOME/catkin_ws/devel/setup.zsh ] && source $HOME/catkin_ws/devel/setup.zsh
 
 
+# https://github.com/rbenv/rbenv
+# https://www.cyberciti.biz/faq/unix-linux-shell-find-out-posixcommand-exists-or-not/
+# https://pages.github.com/versions/
+command -v rbenv > /dev/null && eval "$(rbenv init -)"
+[ -f /lib/rbenv/completions/rbenv.zsh ] && source /lib/rbenv/completions/rbenv.zsh
+
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/thomas/.local/share/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"

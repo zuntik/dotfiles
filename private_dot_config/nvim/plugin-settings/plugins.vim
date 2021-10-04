@@ -11,6 +11,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+Plug 'preservim/nerdtree'
 
 " Themes
 Plug 'joshdick/onedark.vim'
@@ -27,4 +28,5 @@ call plug#end()
 execute 'source '.stdpath('config').'/plugin-settings/polyglot.vim'
 execute 'source '.stdpath('config').'/plugin-settings/gitgutter.vim'
 execute 'source '.stdpath('config').'/plugin-settings/coc.vim'
+execute 'source '.stdpath('config').'/plugin-settings/nerdtree.vim'
 

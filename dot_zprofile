@@ -40,9 +40,6 @@ export PASSWORD_STORE_GENERATED_LENGTH=20
 export PASSWORD_STORE_ENABLE_EXTENSIONS="true"
 export PASSWORD_STORE_EXTENSIONS_DIR=$PASSWORD_STORE_DIR/.extensions
 
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
 # use vimpager when available for manpages
 [ -f /usr/bin/vimpager ] && export MANPAGER=vimpager
 

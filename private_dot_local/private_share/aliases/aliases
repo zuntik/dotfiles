@@ -1,3 +1,5 @@
+alias mv='mv -b'
+alias cp='cp -b'
 alias image_metadata='identify -verbose'
 alias image_metadata_remove='mogrify -strip'
 alias pwd_end_bit="pwd | sed 's#.*/##'"
