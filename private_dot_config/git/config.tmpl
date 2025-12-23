@@ -1,6 +1,26 @@
 [user]
 	email = {{ .email }}
 	name = {{ .name }}
+[include]
+    path = user
+[core]
+    editor = nvim
+    excludesfile = ~/.config/git/gitignore
+    hooksPath = ~/.config/git/hooks/
+[color]
+    diff = true
+    ui = true
+    branch = true
+    status = true
+    decorate = true
+    showbranch = true
+    pager = true
+    grep = true
+    interactive = true
+[credential]
+    helper = cache --timeout=3600
+[push]
+    default = simple
 [advice]
     statusHints = false
     commitBeforeMerge = false

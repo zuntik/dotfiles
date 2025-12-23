@@ -1,7 +1,0 @@
-#!/bin/bash
-
-while true ; 
-do 
-    mpc --host=$HOME/.local/share/mpd/socket --wait current  ;
-    pkill  -RTMIN+10 -x i3blocks ;
-done

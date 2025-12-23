@@ -1,7 +1,6 @@
 # Default programs
 export EDITOR="nvim-qt --nofork"
 
-# ~/ Clean-up:
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
@@ -33,12 +32,7 @@ export TEXMFCONFIG="${XDG_CONFIG_HOME:-$HOME/.config}texlive/texmf-config"
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 export PYLINTHOME="${XDG_CACHE:-$HOME/.cache}/pylint"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.cache}/go"
-
-# other stuff
-export MPD_HOST=~/.local/share/mpd/socket
-export PASSWORD_STORE_GENERATED_LENGTH=20
-export PASSWORD_STORE_ENABLE_EXTENSIONS="true"
-export PASSWORD_STORE_EXTENSIONS_DIR=$PASSWORD_STORE_DIR/.extensions
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 # use vimpager when available for manpages
 [ -f /usr/bin/vimpager ] && export MANPAGER=vimpager
