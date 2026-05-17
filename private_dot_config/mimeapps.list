@@ -1,5 +1,6 @@
 [Added Associations]
 application/epub+zip=org.pwmt.zathura.desktop;com.github.johnfactotum.Foliate.desktop;
+application/vnd.oasis.opendocument.text=libreoffice-writer.desktop;
 application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop;
 application/xml=org.kde.kate.desktop;
 audio/x-mod=mpv.desktop;
@@ -27,6 +28,7 @@ x-scheme-handler/web+stellar=keybase.desktop;Keybase.desktop;
 [Default Applications]
 application/epub+zip=org.pwmt.zathura.desktop;
 application/pdf=org.pwmt.zathura.desktop;
+application/vnd.oasis.opendocument.text=libreoffice-writer.desktop;
 application/x-bibtex=org.kde.kate.desktop;
 application/x-bittorrent=org.qbittorrent.qBittorrent.desktop;
 application/x-extension-htm=firefox.desktop
