@@ -736,6 +736,15 @@ for cmd in "${usefull_commands[@]}"; do
     fi
 done
 
+fcount() {
+    local dir="${1:-.}"
+
+    for d in "$dir"/*/; do
+        [ -d "$d" ] || continue
+        count=$(find "$d" -type f 2>/dev/null | wc -l)
+        printf "%8d  %s\n" "$count" "$(basename "$d")"
+    done | sort -nr
+}
 
 sans() {
     echo "
